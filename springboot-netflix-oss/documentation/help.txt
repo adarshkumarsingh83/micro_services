@@ -1,0 +1,127 @@
+$ chmod -R 777 ./
+
+$ mvn clean package
+
+$ java -jar ./eureka-server/target/eureka-server-1.0-SNAPSHOT.jar
+$ java -jar ./configuration-server/target/configuration-server-1.0-SNAPSHOT.jar
+$ java -jar ./zuul-server/target/zuul-server-1.0-SNAPSHOT.jar
+$ java -jar ./boot-admin-server/target/boot-admin-server-1.0-SNAPSHOT.jar
+$ java -jar ./user-management/target/user-management-1.0-SNAPSHOT.jar
+$ java -jar ./address-management/target/address-management-1.0-SNAPSHOT.jar
+$ java -jar ./management-aggregator/target/management-aggregator-1.0-SNAPSHOT.jar
+
+$ curl -X GET http://localhost:8100/api/boot-admin/service-discovery
+
+$ curl -X GET http://localhost:1111/service-discovery
+
+
+---------------------------------------------------------------------
+DOCKER PROCESS
+---------------------------------------------------------------------
+$ docker-compose build
+
+$ docker image ls
+
+#To create a custom network
+$ docker network create -d bridge spring-cloud-network
+
+#To list the network
+$ docker network ls
+
+#To remove unused network
+$ docker network prune
+
+#To Create a docker voloume repo
+$ docker volume create --name=spring-cloud-config-repo
+
+#To list the volume
+$ docker volume ls
+
+#To remove the unused volume
+$ docker volume prune
+
+#To kill the running container
+$ docker kill $(docker ps -q)
+
+#To remove all the images
+$ docker rmi $(docker images -a -q)
+
+EurekaServer=8761
+ZuulServer=8100
+ConfigurationServer=8200
+ZipkinServer=8300
+UserManagement=8400
+AddressManagement=8500
+ManagementAggregator=8600
+HystrixDashboardServer=8700
+
+#to Access Eureka dashboard
+http://localhost:8761
+
+#accessing boot admin via zuul
+http://localhost:8100/api/boot-admin
+admin/admin
+
+#accessing boot admin directly
+http://localhost:1111
+admin/admin
+
+---------------------------------------------------------
+to get the list of services and its link of description
+---------------------------------------------------------
+http://localhost:8100/api/boot-admin/service-discovery
+http://localhost:1111/service-discovery
+---------------------------------------------------------
+#instance info url fo user mgnt,address mgnt, aggregator mgnt.
+---------------------------------------------------------
+http://xxxx:xxx/service-instances/management-aggregator
+http://xxxx:xxx/service-instances/user-management
+http://xxxx:xxx/service-instances/address-management
+---------------------------------------------------------
+
+POST
+curl -d '{"id": 1002,"name": "sonu","email": "sonu@singh"}' -H "Content-Type: application/json" \
+-X POST http://localhost:8100/api/user-management/user
+
+GET
+curl -X GET localhost:8100/api/user-management/user/1002
+
+PUT
+curl -d '{"id": 1002,"name": "sonu singh","email": "sonu@singh"}' -H "Content-Type: application/json" \
+-X PUT http://localhost:8100/api/user-management/user/1002
+
+DELETE
+curl -X DELETE http://localhost:8100/api/user-management/user/1002
+
+---------------------------------------------
+POST
+curl -d '{"id": 1002,"phone": "1111","email": "sonu@singh"}' -H "Content-Type: application/json" \
+-X POST http://localhost:8100/api/address-management/address
+
+
+GET
+curl -X GET http://localhost:8100/api/address-management/address/1002
+
+PUT
+curl -d '{"id": 1002,"phone": "10101","email": "sonu@singh"}' -H "Content-Type: application/json" \
+-X PUT http://localhost:8100/api/address-management/address/1002
+
+DELETE
+curl -X DELETE http://localhost:8100/api/address-management/address/1002
+
+GET
+curl -X GET localhost:8100/api/management-aggregator/aggregator/1000
+curl -X GET localhost:8100/api/management-aggregator/aggregator/1001
+
+---------------------------------------------
+boot admin
+http://localhost:1111
+---------------------------------------------
+zipkin server
+http://localhost:8300/zipkin/
+---------------------------------------------
+hystrix dashboard
+http://localhost:8700/hystrix
+---------------------------------------------
+
+---------------------------------------------

@@ -1,0 +1,266 @@
+version: '3.3'
+services:
+
+# EurekaServer=8761
+  eureka-server:
+    container_name: eureka-server
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    image: eureka-server:latest
+    tty:
+      true
+    restart:
+      unless-stopped
+    ports:
+    - "8761:8761"
+    expose:
+    - 8761
+    networks:
+      - spring-cloud-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/eureka_server
+    environment:
+    - "COMPOSE_HTTP_TIMEOUT=120"
+    env_file:
+    - espark.env
+
+# ConfigurationServer=8200
+  configuration-server:
+    container_name: configuration-server
+    build:
+      context: ./configuration-server
+      dockerfile: Dockerfile
+    image: configuration-server:latest
+    tty:
+      true
+    restart:
+      unless-stopped
+    ports:
+    - "8200:8200"
+    expose:
+    - 8200
+    networks:
+      - spring-cloud-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    depends_on:
+    - eureka-server
+    links:
+    - eureka-server
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/configuration-server
+    environment:
+    - "COMPOSE_HTTP_TIMEOUT=120"
+    env_file:
+    - espark.env
+
+# ZuulServer=8100
+  zuul-server:
+    container_name: zuul-server
+    build:
+      context: ./zuul-server
+      dockerfile: Dockerfile
+    image: zuul-server:latest
+    tty:
+      true
+    restart:
+      unless-stopped
+    ports:
+    - "8100:8100"
+    expose:
+    - 8100
+    networks:
+    - spring-cloud-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    depends_on:
+      - eureka-server
+    links:
+      - eureka-server
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/zuul_server
+    environment:
+    - "COMPOSE_HTTP_TIMEOUT=120"
+    env_file:
+    - espark.env
+
+#BootAdminServer
+  boot-admin-server:
+    container_name: boot-admin-server
+    build:
+      context: ./boot-admin-server
+      dockerfile: Dockerfile
+    image: boot-admin-server:latest
+    tty:
+      true
+    restart:
+      unless-stopped
+    ports:
+    - "1111:1111"
+    expose:
+    - 1111
+    networks:
+    - spring-cloud-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    depends_on:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+    links:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/boot-admin_server
+    environment:
+    - "COMPOSE_HTTP_TIMEOUT=120"
+    env_file:
+    - espark.env
+
+# UserManagement=8400
+  user-management:
+    container_name: user-management
+    build:
+      context: ./user-management
+      dockerfile: Dockerfile
+    image: user-management:latest
+    tty:
+      true
+    restart:
+      unless-stopped
+    ports:
+    - "8400:8400"
+    expose:
+    - 8400
+    networks:
+    - spring-cloud-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    depends_on:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - boot-admin-server
+    links:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - boot-admin-server
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/user_management
+    environment:
+    - "COMPOSE_HTTP_TIMEOUT=120"
+    env_file:
+    - espark.env
+
+# AddressManagement=8500
+  address-management:
+    container_name: address-management
+    build:
+      context: ./address-management
+      dockerfile: Dockerfile
+    image: address-management:latest
+    tty:
+      true
+    restart:
+      unless-stopped
+    ports:
+    - "8500:8500"
+    expose:
+    - 8500
+    networks:
+    - spring-cloud-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    depends_on:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - boot-admin-server
+     - user-management
+    links:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - boot-admin-server
+     - user-management
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/address_management
+    environment:
+    - "COMPOSE_HTTP_TIMEOUT=120"
+    env_file:
+    - espark.env
+
+# ManagementAggregator=8600
+  management-aggregator:
+    container_name: management-aggregator
+    build:
+      context: ./management-aggregator
+      dockerfile: Dockerfile
+    image: management-aggregator:latest
+    tty:
+      true
+    restart:
+      unless-stopped
+    ports:
+    - "8600:8600"
+    expose:
+    - 8600
+    networks:
+    - spring-cloud-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    depends_on:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - boot-admin-server
+     - user-management
+     - address-management
+    links:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - boot-admin-server
+     - user-management
+     - address-management
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/management_aggregator
+    environment:
+    - "COMPOSE_HTTP_TIMEOUT=120"
+    env_file:
+    - espark.env
+
+
+networks:
+    spring-cloud-network:
+        driver: bridge
+
+volumes:
+    spring-cloud-config-repo:
+        external: true

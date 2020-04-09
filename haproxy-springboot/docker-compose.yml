@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+    mongodata:
+        image: mongo:3.2
+        volumes:
+        - /data/db
+        entrypoint: /bin/bash
+    mongo:
+        image: mongo:3.2
+        depends_on:
+            - mongodata
+        volumes_from:
+            - mongodata
+        ports:
+            - "27017"
+    web-services:
+        image: web-services
+        depends_on:
+            - mongo
+        environment:
+            - MONGODB_DB_NAME=web-services
+        ports:
+            - "9090"
+        links:
+            - mongo
+    web:
+        image: haproxy
+        depends_on:
+            - web-services
+        environment:
+            - STATS_PORT=1936
+            - STATS_AUTH="admin:password"
+        links:
+            - web-services
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        ports:
+            - 80:80
+            - 1936:1936

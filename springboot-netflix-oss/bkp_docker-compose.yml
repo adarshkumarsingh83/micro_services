@@ -1,0 +1,230 @@
+version: '3'
+services:
+
+# EurekaServer=8761
+  eureka-server:
+    container_name: eureka_server
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - 8761:8761
+    networks:
+        - spring-cloud-network
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/eureka_server
+    environment:
+      - COMPOSE_HTTP_TIMEOUT=120
+
+# ConfigurationServer=8200
+  configuration-server:
+    container_name: configuration_server
+    build:
+      context: ./configuration-server
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - 8200:8200
+    networks:
+        - spring-cloud-network
+    depends_on:
+    - eureka-server
+    links:
+    - eureka-server
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/configuration-server
+    environment:
+      - COMPOSE_HTTP_TIMEOUT=120
+
+# ZuulServer=8100
+  zuul-server:
+    container_name: zuul_server
+    build:
+      context: ./zuul-server
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - 8100:8100
+    networks:
+        - spring-cloud-network
+    depends_on:
+      - eureka-server
+    links:
+      - eureka-server
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/zuul_server
+    environment:
+      - COMPOSE_HTTP_TIMEOUT=120
+
+#BootAdminServer
+  boot-admin-server:
+    container_name: boot-admin_server
+    build:
+      context: ./boot-admin-server
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - 1111:1111
+    networks:
+        - spring-cloud-network
+    depends_on:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+    links:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/boot-admin_server
+    environment:
+      - COMPOSE_HTTP_TIMEOUT=120
+
+# UserManagement=8400
+  user-management:
+    container_name: user_management
+    build:
+      context: ./user-management
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - 8400:8400
+    networks:
+        - spring-cloud-network
+    depends_on:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - boot-admin-server
+    links:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - boot-admin-server
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/user_management
+    environment:
+      - COMPOSE_HTTP_TIMEOUT=120
+
+# AddressManagement=8500
+  address-management:
+    container_name: address_management
+    build:
+      context: ./address-management
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - 8500:8500
+    networks:
+        - spring-cloud-network
+    depends_on:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - boot-admin-server
+     - user-management
+    links:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - boot-admin-server
+     - user-management
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/address_management
+    environment:
+      - COMPOSE_HTTP_TIMEOUT=120
+
+# ManagementAggregator=8600
+  management-aggregator:
+    container_name: management_aggregator
+    build:
+      context: ./management-aggregator
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - 8600:8600
+    networks:
+        - spring-cloud-network
+    depends_on:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - boot-admin-server
+     - user-management
+     - address-management
+    links:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - boot-admin-server
+     - user-management
+     - address-management
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/management_aggregator
+    environment:
+      - COMPOSE_HTTP_TIMEOUT=120
+
+# HystrixDashboardServer=8700
+  hystrixdashboard-server:
+    container_name: hystrixdashboard_server
+    build:
+      context: ./hystrixdashboard-server
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - 8700:8700
+    networks:
+        - spring-cloud-network
+    depends_on:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - user-management
+     - address-management
+     - management-aggregator
+     - boot-admin-server
+    links:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+     - user-management
+     - address-management
+     - management-aggregator
+     - boot-admin-server
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/hystrixdashboard_server
+    environment:
+      - COMPOSE_HTTP_TIMEOUT=120
+
+# ZipkinServer=8300
+  zipkin-server:
+    container_name: zipkin_server
+    build:
+      context: ./zipkin-server
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - 8300:8300
+    networks:
+        - spring-cloud-network
+    depends_on:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+    links:
+     - eureka-server
+     - zuul-server
+     - configuration-server
+    volumes:
+       - spring-cloud-config-repo:/var/lib/spring-cloud/zipkin_server
+    environment:
+      - COMPOSE_HTTP_TIMEOUT=120
+
+networks:
+    spring-cloud-network:
+        driver: bridge
+
+volumes:
+    spring-cloud-config-repo:
+        external: true
