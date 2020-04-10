@@ -1,0 +1,38 @@
+
+#github url 
+https://github.com/adarshkumarsingh83/configuration.git
+-----------------------------------------------------------------------------------------
+# configuration/configclient-dev.properties
+espark.message=welcome to espark adarsh
+espark.client.name=espark configuratoin client
+
+#configuration/configclient-dev.yml
+espark:
+ message: welcome to espark adarsh
+ client:
+  name: espark configuratoin client
+  
+#configuration/configserver-dev.properties
+orgname=espark
+dev=adarsh
+
+#configuration/configserver-dev.yml
+orgname: espark
+dev: adarsh  
+-----------------------------------------------------------------------------------------
+
+$ mvn clean package 
+$ mvn spring-boot:run 
+
+
+#For Client Configuration 
+$ curl http://localhost:8888/configclient/dev
+
+#For Configuration Server 
+$ curl http://localhost:8888/configserver/dev
+
+
+#From the Configuration Server client 
+$ curl http://localhost:9090/configuration/server
+
+$ curl http://localhost:9090/configuration/client
