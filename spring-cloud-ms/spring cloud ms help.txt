@@ -1,0 +1,28 @@
+#To Build and execute 
+$ mvn clean package 
+$ mvn spring-boot:run 
+
+#To view the eureka server console 
+http://localhost:8761/
+
+#To hit the eureka server clients 
+$ curl http://localhost:8081/service-instances/eureka-client-one
+$ curl http://localhost:8082/service-instances/eureka-client-two
+
+
+#To hit the service via api gateway 
+
+#Without header 
+$ curl localhost:8080/service-one
+
+$ curl localhost:8080/service-two
+
+#With header 
+
+$ curl -i -H "X-ONE-HEADER: first-service-header"  -X GET localhost:8080/service-one
+
+$ curl -i -H "X-TWO-HEADER: second-service-header" -X GET localhost:8080/service-one
+
+
+# To View the maven dependency tree 
+mvn dependency:tree -Dverbose 

@@ -1,0 +1,43 @@
+hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 2000
+
+spring:
+  application:
+    name: api-gateway
+  cloud.gateway:
+    discovery:
+      locator:
+        enabled: true
+        lowerCaseServiceId: true
+    routes:
+      - id: service-one
+        uri: lb://EUREKA-CLIENT-ONE
+        predicates:
+          - Path=/service-one
+          - Path=/service-one/**
+      - id: service-two
+        uri: lb://EUREKA-CLIENT-TWO
+        predicates:
+          - Path=/service-two
+          - Path=/service-two/**
+    corsConfigurations:
+      '[/**]':
+        allowedOrigins: "http://localhost:3000"
+        allowedMethods:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
