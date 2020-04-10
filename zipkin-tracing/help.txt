@@ -1,0 +1,23 @@
+
+1.Step 
+Execute the Api-Service 
+$ mvn clean package 
+$ mvn spring-boot:run 
+$ curl localhost:9090/server-message
+
+2.Step 
+Execute the Zipkin-client
+$ mvn clean package 
+$ mvn spring-boot:run 
+$ curl localhost:9090/message
+
+3.Step 
+Execute the Zipkin-Server 
+$ mvn clean package 
+$ mvn spring-boot:run 
+
+##log into the zipkin console 
+it will take time to show the services in service name drop down 
+
+# Zipkin Server Url
+http://localhost:9411/zipkin/
