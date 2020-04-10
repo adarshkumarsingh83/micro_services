@@ -1,11 +1,32 @@
 https://spring.io/cloud
 
+NOTE All application will have some error in the start but ignore that 
 #To Build and execute 
 $ mvn clean package 
 $ mvn spring-boot:run 
 
-#To view the eureka server console 
+starter in below order 
+1.eureka server 
+2.zipkin server 
+3.config server 
+4.boot admin 
+5.api gateway 
+6.client 1 
+7 client 2 
+
+==========================================================================================
+# Eureka server console 
+------------------------------------------------------------------------------------------
 http://localhost:8761/
+==========================================================================================
+# Zipkin Server Url
+------------------------------------------------------------------------------------------
+http://localhost:9411/zipkin/
+==========================================================================================
+# Spring boot Admin 
+------------------------------------------------------------------------------------------
+http://192.168.0.133:8181/
+==========================================================================================
 
 #To hit the eureka server clients 
 $ curl http://localhost:8081/service-instances/eureka-client-one
@@ -89,11 +110,6 @@ $ curl  -X GET localhost:8080/service-two/configuration/default
 $ curl  -X GET localhost:8080/service-two/configuration/dev
 
 $ curl  -X GET localhost:8080/service-two/configuration/prod
-==========================================================================================
-# Zipkin Server Url
-------------------------------------------------------------------------------------------
-http://localhost:9411/zipkin/
-
 ==========================================================================================
 # To View the maven dependency tree 
 mvn dependency:tree -Dverbose 
