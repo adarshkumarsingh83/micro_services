@@ -17,12 +17,76 @@ $ curl localhost:8080/service-one
 
 $ curl localhost:8080/service-two
 
+
 #With header 
 
-$ curl -i -H "X-ONE-HEADER: first-service-header"  -X GET localhost:8080/service-one
+$ curl -i -H "X-ONE-HEADER: first-service-header"  -X GET localhost:8080/service-one/message
 
-$ curl -i -H "X-TWO-HEADER: second-service-header" -X GET localhost:8080/service-one
+$ curl -i -H "X-TWO-HEADER: second-service-header" -X GET localhost:8080/service-two/message
 
+==========================================================================================
+CONFIGURATION 
+==========================================================================================
+#configuration-server.yml
+#configuration-server-dev.yml
+#configuration-server-prod.yml
 
+#eureka-client-one.yml
+#eureka-client-one-dev.yml
+#eureka-client-one-prod.yml
+
+#eureka-client-two.yml
+#eureka-client-two-dev.yml
+#eureka-client-two-prod.yml
+
+------------------------------------------------------------------------------------------
+#Configuration Server properties without api gateway
+------------------------------------------------------------------------------------------
+
+$ curl http://localhost:8888/configuration-server/default
+
+$ curl http://localhost:8888/configuration-server/dev
+
+$ curl http://localhost:8888/configuration-server/prod
+
+------------------------------------------------------------------------------------------
+#Configuration Service-One properties without api gateway
+------------------------------------------------------------------------------------------
+
+$ curl http://localhost:8081/service-one/configuration/default
+
+$ curl http://localhost:8081/service-one/configuration/dev
+
+$ curl http://localhost:8081/service-one/configuration/prod
+
+------------------------------------------------------------------------------------------
+#Configuration Service-Two properties without api gateway
+------------------------------------------------------------------------------------------
+
+$ curl http://localhost:8082/service-two/configuration/default
+
+$ curl http://localhost:8082/service-two/configuration/dev
+
+$ curl http://localhost:8082/service-two/configuration/prod
+
+==========================================================================================
+#Configuration Service-One properties with api gateway
+------------------------------------------------------------------------------------------
+$ curl  -X GET localhost:8080/service-one/configuration/default
+
+$ curl  -X GET localhost:8080/service-one/configuration/dev
+
+$ curl  -X GET localhost:8080/service-one/configuration/prod
+
+------------------------------------------------------------------------------------------
+#Configuration Service-Two properties with api gateway
+------------------------------------------------------------------------------------------
+
+$ curl  -X GET localhost:8080/service-two/configuration/default
+
+$ curl  -X GET localhost:8080/service-two/configuration/dev
+
+$ curl  -X GET localhost:8080/service-two/configuration/prod
+==========================================================================================
 # To View the maven dependency tree 
 mvn dependency:tree -Dverbose 

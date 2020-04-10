@@ -11,13 +11,15 @@ spring:
     routes:
       - id: service-one
         uri: lb://EUREKA-CLIENT-ONE
+        filters:
+          - AddRequestHeader=X-ONE-HEADER,first-service-header
         predicates:
-          - Path=/service-one
           - Path=/service-one/**
       - id: service-two
         uri: lb://EUREKA-CLIENT-TWO
+        filters:
+          - AddRequestHeader=X-TWO-HEADER,second-service-header
         predicates:
-          - Path=/service-two
           - Path=/service-two/**
     corsConfigurations:
       '[/**]':
