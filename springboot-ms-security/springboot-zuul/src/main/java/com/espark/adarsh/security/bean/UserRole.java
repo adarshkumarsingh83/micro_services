@@ -1,4 +1,4 @@
-package com.espark.adarsh.security;
+package com.espark.adarsh.security.bean;
 
 public enum UserRole {
 	USER, ADMIN;

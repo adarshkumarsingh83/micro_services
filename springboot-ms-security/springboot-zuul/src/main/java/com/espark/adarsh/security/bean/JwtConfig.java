@@ -1,9 +1,9 @@
-package com.espark.adarsh.security;
+package com.espark.adarsh.security.bean;
 
-import org.springframework.beans.factory.annotation.Value;
 
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.beans.factory.annotation.Value;
 
 // To use this class outside. You have to 
 // 1. Define it as a bean, either by adding @Component or use @Bean to instantiate an object from it
@@ -12,14 +12,14 @@ import lombok.ToString;
 // So, If you tried to create an instance manually (i.e. new JwtConfig()). This won't inject all the values. 
 // Because you didn't ask Spring to do so (it's done by you manually!).
 // Also, if, at any time, you tried to instantiate an object that's not defined as a bean
-// Don't expect Spring will autowire the fields inside that class object.
+// Don't expect Spring will auto-wire the fields inside that class object.
 
-@Getter        // lombok will create getters auto.
-@ToString        // [IMP] You need to install lombok jar file: https://stackoverflow.com/a/11807022
+// lombok will create getters auto.
+@Getter
+@ToString
 public class JwtConfig {
 
     // Spring doesn't inject/autowire to "static" fields.
-    // Link: https://stackoverflow.com/a/6897406
     @Value("${security.jwt.uri:/auth/**}")
     private String Uri;
 
@@ -35,7 +35,6 @@ public class JwtConfig {
     @Value("${security.jwt.secret:JwtSecretKey}")
     private String secret;
 
-    // In case you want to use plain getters instead of lombok.
     public String getUri() {
         return Uri;
     }
