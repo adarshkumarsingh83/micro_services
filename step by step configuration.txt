@@ -476,32 +476,119 @@ b. Servvice class on the method wich is call some other external service
 ==========================================================================================	
 11.Hystix Dashboard Server
 ==========================================================================================
-http://localhost:9191/hystrix	
+a. pom.xml 
 
+<properties>
+	<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
+</properties>
 
-http://localhost:9098/hystrix.stream 
-==========================================================================================	
-		<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
-		
-		
-				<dependency>
+<dependencyManagement>
+	<dependencies>
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+			<artifactId>spring-cloud-dependencies</artifactId>
+			<version>${spring-cloud.version}</version>
+			<type>pom</type>
+			<scope>import</scope>
 		</dependency>
+	</dependencies>
+</dependencyManagement>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+ <dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+		
+
+b. ApplicationMain.java
+
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
+	@EnableHystrixDashboard
+
+c. dashboard Url
+
+http://localhost:port/hystrix	
 
 ==========================================================================================	
+12. Hystrix Dash Board client 
+==========================================================================================	
+a. pom.xml
+		
+<properties>
+    <spring-cloud.version>Hoxton.M3</spring-cloud.version>
+</properties>
+
+<repositories>
+    <repository>
+         <id>spring-milestones</id>
+         <name>Spring Milestones</name>
+         <url>https://repo.spring.io/milestone</url>
+    </repository>
+</repositories>		
+		
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+
+<dependencyManagement>
+	<dependencies>
+		<dependency>
+    		<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-dependencies</artifactId>
+			<version>${spring-cloud.version}</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+	</dependencies>
+</dependencyManagement>
+
+b. ApplicationMain.java 
+
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+  @EnableCircuitBreaker
+  
+  
+c. Service.java 
+    Note: always call the method from different class not from same class other wise 
+    hystix circuit will not work 
+
+    @HystrixCommand(fallbackMethod = "fallBackMethod")
+    public Type methodName(Type var...) {
+    
+    } 
+    
+    public Type fallBackMethod(Type var...) {
+    
+    }  
+
+d. application.properties
+   
+   management.endpoints.web.exposure.include=* 
+
+e. open the hystrix circuit in flow many times then collect the stream 
+of hystrix by calling the caller application then pass this url to the 
+hystrix dashboard for more details view 
+
+ http://localhost:8080/actuator/hystrix.stream
+==========================================================================================	
+
+==========================================================================================	
+
 
 ==========================================================================================	
 

@@ -1,7 +1,5 @@
 package com.espark.adarsh.service;
 
-import com.espark.adarsh.bean.Address;
-import com.espark.adarsh.bean.ApiBean;
 import com.espark.adarsh.bean.User;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
