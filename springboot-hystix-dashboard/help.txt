@@ -1,0 +1,66 @@
+
+
+
+#Information-Management 
+$ mvn clean pckage 
+$ mvn spring-boot:run 
+
+$ curl http://localhost:8080/information/100
+{
+  "id": "100",
+  "address": {
+    "userId": "100",
+    "houseNumber": "111/0",
+    "streetNumber": "spring creek",
+    "cityName": "plano",
+    "stateName": "tx",
+    "countryName": "usa"
+  },
+  "user": {
+    "userId": "100",
+    "userName": "radha singh",
+    "userEmail": "radha@singh"
+  }
+}
+
+$ curl http://localhost:8080/information/200
+{
+  "id": "200",
+  "address": {
+    "userId": "200",
+    "houseNumber": "222/1",
+    "streetNumber": "Town And country",
+    "cityName": "frisco",
+    "stateName": "tx",
+    "countryName": "usa"
+  },
+  "user": {
+    "userId": "200",
+    "userName": "adarsh kumar",
+    "userEmail": "adarsh@kumar"
+  }
+}
+
+
+# Address-Servcie 
+$ mvn clean pckage 
+$ mvn spring-boot:run 
+
+$ curl localhost:8081/address/100
+$ curl localhost:8081/address/200
+
+
+#User-Service
+$ mvn clean pckage 
+$ mvn spring-boot:run 
+
+$ curl localhost:8082/user/100
+$ curl localhost:8082/user/200
+
+#dashboard url 
+http://localhost:9191/hystrix
+
+#Stream url for the service 
+http://localhost:8080/hystrix.stream
+
+ http://localhost:8080/actuator/hystrix.stream

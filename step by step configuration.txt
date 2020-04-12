@@ -469,4 +469,36 @@ b. Servvice class on the method wich is call some other external service
 	  return valueSameASConfiguredMethod;
 	}
 	
-==========================================================================================		
+==========================================================================================	
+11.Hystix Dashboard Server
+==========================================================================================
+http://localhost:9191/hystrix	
+
+
+http://localhost:9098/hystrix.stream 
+==========================================================================================	
+		<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
+		
+		
+				<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+		</dependency>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+==========================================================================================	
+
+==========================================================================================	
+
+	

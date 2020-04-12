@@ -1,0 +1,5 @@
+application:
+  name: information-management
+
+server:
+  port: 8080
