@@ -219,7 +219,11 @@ a. pom.xml
 	<artifactId>spring-boot-admin-starter-client</artifactId>
 </dependency>
 
-b. application.properties 
+b. ApplicationMain.java
+import de.codecentric.boot.admin.config.EnableAdminServer;
+@EnableAdminServer
+
+c. application.properties 
 
 #SPRING BOOT ADMIN
 spring.boot.admin.client.url=http://localhost:8181

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 import java.net.URI;
 
 @Slf4j
@@ -17,49 +18,16 @@ import java.net.URI;
 public class IntegrationService {
 
     @Autowired
-    RestTemplate restTemplate;
+    UserIntegrationService userIntegrationService;
 
-
-    @Value("${address.service.url}")
-    String addressServiceUrl;
-
-    @Value("${user.service.url}")
-    String userServiceUrl;
+    @Autowired
+    AddressIntegrationService addressIntegrationService;
 
     public ApiBean getData(String id) {
         log.info("label=information-service getData() ={}", id);
-        User user = getUser(id);
-        Address address = getAddress(id);
+        User user = userIntegrationService.getUser(id);
+        Address address = addressIntegrationService.getAddress(id);
         return new ApiBean(id, address, user);
     }
 
-    @HystrixCommand(fallbackMethod = "getDefaultUser")
-    public User getUser(String id) {
-        log.info("label=information-service getUser()  User Service ={}", id);
-        URI uri = URI.create(userServiceUrl + id);
-        User user = this.restTemplate.getForObject(uri, User.class);
-        return user;
-    }
-
-    @SuppressWarnings("unused")
-    public User getDefaultUser(String id) {
-        log.info("label=information-service getDefaultUser() " +
-                "Hystrix Circuit Opened for User Service id={}", id);
-        return new User();
-    }
-
-    @HystrixCommand(fallbackMethod = "getDefaultAddress")
-    public Address getAddress(String id) {
-        log.info("label=information-service getAddress()  Address Service ={}", id);
-        URI uri = URI.create(addressServiceUrl + id);
-        Address address = this.restTemplate.getForObject(uri, Address.class);
-        return address;
-    }
-
-    @SuppressWarnings("unused")
-    public Address getDefaultAddress(String id) {
-        log.info("label=information-service getDefaultAddress() " +
-                "Hystrix Circuit Opened for Address Service id={}", id);
-        return new Address();
-    }
 }

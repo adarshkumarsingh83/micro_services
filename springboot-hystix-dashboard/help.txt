@@ -57,10 +57,12 @@ $ mvn spring-boot:run
 $ curl localhost:8082/user/100
 $ curl localhost:8082/user/200
 
-#dashboard url 
-http://localhost:9191/hystrix
+# bring down user service and then hit the url 
+then get the stream of the hystrix circuit breaker then use the same url in the 
+hystrix dashboard 
 
 #Stream url for the service 
-http://localhost:8080/hystrix.stream
-
  http://localhost:8080/actuator/hystrix.stream
+
+#dashboard url 
+http://localhost:9191/hystrix
