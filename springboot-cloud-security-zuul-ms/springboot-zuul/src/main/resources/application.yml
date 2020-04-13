@@ -1,0 +1,39 @@
+
+spring:
+  application:
+    name: zuul-server
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+zuul:
+  #Service will be mapped under the /api URI
+  #prefix: /api
+  #  Uncomment to disable auto-registering all services read from Eureka
+  ignoredServices: '*'
+  routes:
+    test:
+      path: /redirect/**
+      url: http://google.com
+    auth-service:
+      path: /auth/**
+      serviceId: auth-service
+      # In case of auth, we need to pass the "/auth/" in the path to auth service.
+      # So, set strip-prefix to false
+      strip-prefix: false
+      # Exclude authorization from sensitive headers
+      sensitive-headers: Cookie,Set-Cookie
+    user-service:
+      path: /api/**
+      serviceId: user-service
+      # So, set strip-prefix to false
+      strip-prefix: false
+    static:
+      path: /static/**
+
+
