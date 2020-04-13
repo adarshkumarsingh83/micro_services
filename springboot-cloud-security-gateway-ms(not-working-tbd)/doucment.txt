@@ -1,11 +1,11 @@
-
+# build each application separately 
 $ mvn clean package 
 $ mvn spring-boot:run 
 
 start in order 
 1. eureka server 
 2.auth server 
-3.zuul server 
+3.api gateway server 
 4.user service 
 
 
@@ -30,5 +30,4 @@ $ curl -v  -X POST -H "Content-Type: application/json" \
  
 $ curl -H "Authorization:Bearer <ACCESS_TOKEN>" localhost:8080/api/wish
 
-$ curl -H "Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNTg2NzExODE4LCJleHAiOjE1ODY3OTgyMTh9.FVp_DOFPzthdQ5mHTZKhSH5dp_qEFnlhCHlix6OxwAih1i4lOmJJ1KhVibsC0RmK_e8wiCgIbVlCixLX9L2nFA" \
-http://localhost:8080/api/wish
+
