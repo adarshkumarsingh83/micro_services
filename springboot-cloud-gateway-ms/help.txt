@@ -8,6 +8,9 @@
 $ mvn clean package 
 $ mvn spring-boot:run 
 
+#eureka server url for browser 
+http://localhost:8761/
+
 #Without api gateway 
 $ curl localhost:8081/address/message
 $ curl localhost:8082/employee/message

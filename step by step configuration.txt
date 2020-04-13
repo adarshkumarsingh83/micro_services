@@ -273,7 +273,16 @@ spring:
           searchPaths: espark-configurations
           
 server:
-  port: 8888          
+  port: 8888       
+  
+or for local configuration not the git then use below one 
+d. application.properties
+
+server.port=8888 
+spring.profiles.active=native
+#common-config is the location inside the resource dir of the configuration server 
+spring.cloud.config.server.native.search-locations=classpath:/common-config     
+
           		
 ==========================================================================================
 6.Configuration Server Client 
