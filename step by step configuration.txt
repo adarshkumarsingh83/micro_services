@@ -586,8 +586,69 @@ hystrix dashboard for more details view
 
  http://localhost:8080/actuator/hystrix.stream
 ==========================================================================================	
-
+13.Spring Cloud Api Gateway 
 ==========================================================================================	
+a. pom.xml 
+	
+<properties>
+	<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
+</properties>
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-gateway</artifactId>
+</dependency>
+	
+<dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-dependencies</artifactId>
+			<version>${spring-cloud.version}</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+	</dependencies>
+</dependencyManagement>
+
+b. ApiGatewayConfig.java
+
+ublic class ApiGatewayConfig {
+
+
+    @Bean
+    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
+        return builder.routes()
+
+                .route(r -> r.path("/api/**")
+                        //Pre and Post Filters provided by Spring Cloud Gateway
+                        .filters(f -> f.addRequestHeader("request-header", "request-header-value")
+                                .addResponseHeader("response-header", "response-header-value"))
+                        .uri("http://host:port/")
+                        .id("service-id"))
+                  ...............
+                  ...............
+                  ...............
+
+                .build();
+    }
+}
+
+or 
+
+c. application.yml 
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: service-id
+        uri: http://hots:port/
+        predicates:
+        - Path=/service-url-patter/**
+        ...............
+        ...............
+        ...............
 
 
 ==========================================================================================	
