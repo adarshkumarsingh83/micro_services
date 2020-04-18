@@ -4,15 +4,20 @@ $ mvn spring-boot:run
 # Start the Eureka Server
 http://localhost:8761
 
+# Start the api gateway 
+# Start the api service 
+# Start the employee Service
+# Start the address service
 
-$ curl http://localhost:8082/api/message -H "api-request:ESPARK-HEADER-FOR-API-SERVICE"
+
+$ curl http://localhost:8080/api/message 
 {
   "ESPARK-ADDRESS-SERVICE": "Hello from Espark Address ServiceESPARK-HEADER-FROM-API-SERVICE",
   "ESPARK-EMPLOYEE-SERVICE": "Hello from Espark Employee Service ESPARK-HEADER-FROM-API-SERVICE",
   "ESPARK-API-SERVICES": "Hello from Espark Api Service ESPARK-HEADER-FOR-API-SERVICE"
 }
 
-$ curl http://localhost:8082/api/address/1
+$ curl http://localhost:8080/api/address/1
 {
   "id": 1,
   "address": {
@@ -24,7 +29,7 @@ $ curl http://localhost:8082/api/address/1
   }
 }
 
-$ curl http://localhost:8082/api/employee/1
+$ curl http://localhost:8080/api/employee/1
 {
   "id": 1,
   "employee": {
@@ -36,7 +41,7 @@ $ curl http://localhost:8082/api/employee/1
   }
 }
 
-$ curl http://localhost:8082/api/details/1
+$ curl http://localhost:8080/api/details/1
 {
   "id": 1,
   "address": {
@@ -55,7 +60,7 @@ $ curl http://localhost:8082/api/details/1
   }
 }
 
-$ curl http://localhost:8082/api/details
+$ curl http://localhost:8080/api/details
 [
   {
     "id": 1,

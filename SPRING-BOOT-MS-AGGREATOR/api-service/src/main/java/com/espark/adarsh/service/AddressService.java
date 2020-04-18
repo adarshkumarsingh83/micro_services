@@ -52,7 +52,7 @@ public class AddressService {
     }
 
     public List<Address> getDefaultAddresses() {
-        return Arrays.asList(new Address(null, null, null, null));
+        return Arrays.asList();
     }
 
     private List<Address> typeSafe(List<Address> addresses) {

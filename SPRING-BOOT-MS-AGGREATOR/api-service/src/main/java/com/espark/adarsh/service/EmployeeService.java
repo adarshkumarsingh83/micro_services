@@ -53,7 +53,7 @@ public class EmployeeService {
     }
 
     public List<Employee> getDefaultEmployees() {
-        return Arrays.asList(new Employee(null, null, null, null));
+        return Arrays.asList();
     }
 
     private List<Employee> typeSafe(List<Employee> employees) {

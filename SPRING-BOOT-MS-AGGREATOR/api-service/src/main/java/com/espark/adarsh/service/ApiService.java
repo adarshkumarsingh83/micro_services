@@ -54,36 +54,39 @@ public class ApiService {
 
     private List<ResponseBean> getAggregatedData(List<Address> addresses, List<Employee> employees) {
         List<ResponseBean> responseBeans = new LinkedList<>();
-
         List<BeanInf> combinedList = new LinkedList<>();
-        combinedList.addAll(addresses);
-        combinedList.addAll(employees);
+        if (!addresses.isEmpty()) {
+            combinedList.addAll(addresses);
+        }
+        if (!employees.isEmpty()) {
+            combinedList.addAll(employees);
+        }
 
         Map<Long, List<BeanInf>> groupedData =
                 combinedList
                         .stream()
                         .collect(Collectors.groupingBy(beanInf -> beanInf.getId()));
 
-        groupedData.entrySet().forEach(longListEntry -> {
-            List<BeanInf> values = longListEntry.getValue();
-            Address address = null;
-            if (values.get(0).getType() == BeanInf.Type.ADDRESS) {
-                address = (Address) values.get(0);
-            } else if (values.get(1).getType() == BeanInf.Type.ADDRESS) {
-                address = (Address) values.get(1);
-            }
-            Employee employee = null;
-            if (values.get(0).getType() == BeanInf.Type.EMPLOYEE) {
-                employee = (Employee) values.get(0);
-            } else if (values.get(1).getType() == BeanInf.Type.EMPLOYEE) {
-                employee = (Employee) values.get(1);
-            }
-            responseBeans.add(new ResponseBean(longListEntry.getKey(), address, employee));
-        });
-
+        groupedData
+                .entrySet()
+                .forEach(longListEntry -> {
+                            responseBeans.add(this.getData(longListEntry.getKey(), longListEntry.getValue()));
+                        }
+                );
         return responseBeans;
-
     }
 
+    private ResponseBean getData(Long id, List<BeanInf> list) {
+        Address address = null;
+        Employee employee = null;
+        for (BeanInf beanInf : list) {
+            if (beanInf.getType() == BeanInf.Type.ADDRESS) {
+                address = (Address) beanInf;
+            } else if (beanInf.getType() == BeanInf.Type.EMPLOYEE) {
+                employee = (Employee) beanInf;
+            }
+        }
+        return new ResponseBean(id, address, employee);
+    }
 
 }
