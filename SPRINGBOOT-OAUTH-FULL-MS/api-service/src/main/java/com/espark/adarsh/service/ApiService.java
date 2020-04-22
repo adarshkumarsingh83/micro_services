@@ -5,6 +5,7 @@ import com.espark.adarsh.bean.Address;
 import com.espark.adarsh.bean.BeanInf;
 import com.espark.adarsh.bean.Employee;
 import com.espark.adarsh.bean.ResponseBean;
+import com.espark.adarsh.util.ApplicationUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,36 +26,44 @@ public class ApiService {
     @Autowired
     AddressService addressService;
 
+    @Autowired
+    ApplicationUtil applicationUtil;
+
     public Map<String, String> getMessages() {
         log.info("label=api-service getMessages()");
+        String accessToken = applicationUtil.getAccessToken();
         HashMap<String, String> response = new HashMap<String, String>();
-        this.addressService.getMessage(response);
-        this.employeeService.getMessage(response);
+        this.addressService.getMessage(response, accessToken);
+        this.employeeService.getMessage(response, accessToken);
         return response;
     }
 
     public ResponseBean getAddress(Long id) {
         log.info("label=api-service getAddress()");
-        return new ResponseBean(id, this.addressService.getAddress(id));
+        String accessToken = applicationUtil.getAccessToken();
+        return new ResponseBean(id, this.addressService.getAddress(id, accessToken));
     }
 
     public ResponseBean getEmployee(Long id) {
         log.info("label=api-service getEmployee()");
-        return new ResponseBean(id, this.employeeService.getEmployee(id));
+        String accessToken = applicationUtil.getAccessToken();
+        return new ResponseBean(id, this.employeeService.getEmployee(id, accessToken));
     }
 
     public ResponseBean getData(Long id) {
         log.info("label=api-service getData()");
-        Address address = this.addressService.getAddress(id);
-        Employee employee = this.employeeService.getEmployee(id);
+        String accessToken = applicationUtil.getAccessToken();
+        Address address = this.addressService.getAddress(id, accessToken);
+        Employee employee = this.employeeService.getEmployee(id, accessToken);
         return new ResponseBean(id, address, employee);
     }
 
 
     public List<ResponseBean> getAllData() {
         log.info("label=api-service getAllData()");
-        List<Address> addressList = this.addressService.getAddress();
-        List<Employee> employeeList = this.employeeService.getEmployees();
+        String accessToken = applicationUtil.getAccessToken();
+        List<Address> addressList = this.addressService.getAddress(accessToken);
+        List<Employee> employeeList = this.employeeService.getEmployees(accessToken);
         return this.getAggregatedData(addressList, employeeList);
     }
 

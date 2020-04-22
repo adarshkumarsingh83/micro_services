@@ -20,11 +20,14 @@ public class ApiController {
     @Autowired
     ApiService apiService;
 
+    @Autowired
+    ApplicationUtil applicationUtil;
+
     @GetMapping("/token")
     public Map<String, String> tokenCheck(@RequestHeader(value = "api-request", required = false) String header) {
         log.info("label=api-controller tokenCheck() executed");
         Map<String, String> response = new HashMap<>();
-        response.put("TOKEN", ApplicationUtil.getAccessToken());
+        response.put("TOKEN", applicationUtil.getAccessToken());
         return response;
     }
 

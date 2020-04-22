@@ -43,7 +43,6 @@ public class OAuthResourceServerConfiguration extends ResourceServerConfigurerAd
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/api/**").authenticated()
                 .antMatchers("/actuator/**").permitAll()
                 .antMatchers(HttpMethod.GET, ROOT_PATTERN).access("#oauth2.hasScope('read')")
                 .antMatchers(HttpMethod.POST, ROOT_PATTERN).access("#oauth2.hasScope('write')")
