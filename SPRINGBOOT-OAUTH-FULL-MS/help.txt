@@ -18,6 +18,13 @@ $ cd springboot-config-server
 $ mvn clean package 
 $ mvn spring-boot:run 
 
+
+####### Start the Auth server #######
+$ cd springboot-oauth2-auth-server
+$ mvn clean package 
+$ mvn spring-boot:run 
+
+
 ####### Start the api gateway 
 $ cd springboot-api-gateway #######
 $ mvn clean package 
@@ -39,18 +46,37 @@ $ cd api-service
 $ mvn clean package 
 $ mvn spring-boot:run 
 
+$ curl --location --request POST 'localhost:8080/oauth/token' \
+--header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ=' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'grant_type=password' \
+--data-urlencode 'username=adarsh' \
+--data-urlencode 'password=adarsh'
 
+$ curl --location --request GET 'localhost:8080/oauth/check_token?token=<TOKEN-VALUE>' \
+--header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ='
 
+$ curl --location --request POST 'localhost:8080/oauth/token' \
+  --header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ=' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'grant_type=password' \
+  --data-urlencode 'username=radha' \
+  --data-urlencode 'password=radha'
 
-
-$ -v curl http://localhost:8080/api/message 
+ $ curl --location --request GET 'localhost:8080/oauth/check_token?token=<TOKEN-VALUE>' \
+   --header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ='
+   
+   
+$ curl -v http:localhost:8080/api/message    
+   
+$ curl -v  http://localhost:8080/api/message -H "Authorization: Bearer <Token Value >"
 {
   "ESPARK-ADDRESS-SERVICE": "Hello from Espark Address ServiceESPARK-HEADER-FROM-API-SERVICE",
   "ESPARK-EMPLOYEE-SERVICE": "Hello from Espark Employee Service ESPARK-HEADER-FROM-API-SERVICE",
   "ESPARK-API-SERVICES": "Hello from Espark Api Service ESPARK-HEADER-FOR-API-SERVICE"
 }
 
-$ -v curl http://localhost:8080/api/address/1
+$ curl -v  http://localhost:8080/api/address/1 -H "Authorization: Bearer <Token Value >"
 {
   "id": 1,
   "address": {
@@ -62,7 +88,7 @@ $ -v curl http://localhost:8080/api/address/1
   }
 }
 
-$ -v curl http://localhost:8080/api/employee/1
+$ curl -v  http://localhost:8080/api/employee/1 -H "Authorization: Bearer <Token Value >"
 {
   "id": 1,
   "employee": {
@@ -74,7 +100,7 @@ $ -v curl http://localhost:8080/api/employee/1
   }
 }
 
-$ -v curl http://localhost:8080/api/details/1
+$curl -v  http://localhost:8080/api/details/1 -H "Authorization: Bearer <Token Value >"
 {
   "id": 1,
   "address": {
@@ -93,7 +119,7 @@ $ -v curl http://localhost:8080/api/details/1
   }
 }
 
-$ -v curl http://localhost:8080/api/details
+$ curl -v  http://localhost:8080/api/details -H "Authorization: Bearer <Token Value >"
 [
   {
     "id": 1,

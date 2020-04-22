@@ -20,3 +20,8 @@ eureka:
     hostname: localhost
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+
+security:
+  jwt:
+    public-key: classpath:public.txt
