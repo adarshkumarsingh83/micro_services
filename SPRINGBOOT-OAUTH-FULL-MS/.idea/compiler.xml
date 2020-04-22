@@ -29,6 +29,7 @@
       <module name="api-service" options="-parameters" />
       <module name="employee-service" options="-parameters" />
       <module name="springboot-api-gateway" options="-parameters" />
+      <module name="springboot-config-server" options="-parameters" />
       <module name="springboot-eureka-server" options="-parameters" />
     </option>
   </component>

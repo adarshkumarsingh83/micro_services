@@ -1,3 +1,6 @@
+server:
+  port: 8888
+
 spring:
   application:
     name: config-server
@@ -13,3 +16,17 @@ spring:
           # this example repo is hosting both the code and the configs, we're
           # isolating the configuration files into their own directory.
           searchPaths: server-config-store
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    instance-id: ${spring.application.name}-${random.int}
+    hostname: localhost
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+# show full health details at /health
+endpoints.health.sensitive: false
