@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="api-service" />
+        <module name="address-service" />
+        <module name="springboot-eureka-server" />
+        <module name="springboot-config-server" />
+        <module name="employee-service" />
+        <module name="springboot-api-gateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="address-service" target="1.8" />
+      <module name="api-service" target="1.8" />
+      <module name="employee-service" target="1.8" />
+      <module name="springboot-api-gateway" target="1.8" />
+      <module name="springboot-config-server" target="1.8" />
+      <module name="springboot-eureka-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="address-service" options="-parameters" />
+      <module name="api-service" options="-parameters" />
+      <module name="employee-service" options="-parameters" />
+      <module name="springboot-api-gateway" options="-parameters" />
+      <module name="springboot-eureka-server" options="-parameters" />
+    </option>
+  </component>
+</project>

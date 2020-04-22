@@ -1,0 +1,125 @@
+1.eureka, api gateway, config server,
+2.jwt Oauth2 server 
+3.resource server with (api aggregator,person,address)
+4.hystrix and hystrix dashboard
+5.spring boot admin
+6.sluth and zipkin 
+
+
+
+$ mvn clean package 
+$ mvn spring-boot:run 
+
+# Start the Eureka Server
+http://localhost:8761
+
+# Start the api gateway 
+# Start the api service 
+# Start the employee Service
+# Start the address service
+
+
+$ curl http://localhost:8080/api/message 
+{
+  "ESPARK-ADDRESS-SERVICE": "Hello from Espark Address ServiceESPARK-HEADER-FROM-API-SERVICE",
+  "ESPARK-EMPLOYEE-SERVICE": "Hello from Espark Employee Service ESPARK-HEADER-FROM-API-SERVICE",
+  "ESPARK-API-SERVICES": "Hello from Espark Api Service ESPARK-HEADER-FOR-API-SERVICE"
+}
+
+$ curl http://localhost:8080/api/address/1
+{
+  "id": 1,
+  "address": {
+    "id": 1,
+    "streetName": "jpb street",
+    "cityName": "jbp",
+    "country": "india",
+    "type": "ADDRESS"
+  }
+}
+
+$ curl http://localhost:8080/api/employee/1
+{
+  "id": 1,
+  "employee": {
+    "id": 1,
+    "firstName": "adarsh",
+    "lastName": "kumar",
+    "career": "It",
+    "type": "EMPLOYEE"
+  }
+}
+
+$ curl http://localhost:8080/api/details/1
+{
+  "id": 1,
+  "address": {
+    "id": 1,
+    "streetName": "jpb street",
+    "cityName": "jbp",
+    "country": "india",
+    "type": "ADDRESS"
+  },
+  "employee": {
+    "id": 1,
+    "firstName": "adarsh",
+    "lastName": "kumar",
+    "career": "It",
+    "type": "EMPLOYEE"
+  }
+}
+
+$ curl http://localhost:8080/api/details
+[
+  {
+    "id": 1,
+    "address": {
+      "id": 1,
+      "streetName": "jpb street",
+      "cityName": "jbp",
+      "country": "india",
+      "type": "ADDRESS"
+    },
+    "employee": {
+      "id": 1,
+      "firstName": "adarsh",
+      "lastName": "kumar",
+      "career": "It",
+      "type": "EMPLOYEE"
+    }
+  },
+  {
+    "id": 2,
+    "address": {
+      "id": 2,
+      "streetName": "hyd street",
+      "cityName": "hyd",
+      "country": "india",
+      "type": "ADDRESS"
+    },
+    "employee": {
+      "id": 2,
+      "firstName": "radha",
+      "lastName": "singh",
+      "career": "IT",
+      "type": "EMPLOYEE"
+    }
+  },
+  {
+    "id": 3,
+    "address": {
+      "id": 3,
+      "streetName": "delhi street",
+      "cityName": "delhi",
+      "country": "india",
+      "type": "ADDRESS"
+    },
+    "employee": {
+      "id": 3,
+      "firstName": "amit",
+      "lastName": "kumar",
+      "career": "Finance",
+      "type": "EMPLOYEE"
+    }
+  }
+]

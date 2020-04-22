@@ -1,0 +1,22 @@
+
+server:
+  port: 0
+
+spring:
+  application:
+    name: employee-service
+  cloud:
+    config:
+      env: default # optional
+      label: master # optional
+      uri: http://localhost:8888 # optional
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    instance-id: ${spring.application.name}-${random.int}
+    hostname: localhost
+    service-url:
+      defaultZone: http://localhost:8761/eureka
