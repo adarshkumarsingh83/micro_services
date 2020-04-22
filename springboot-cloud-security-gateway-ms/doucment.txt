@@ -8,7 +8,6 @@ start in order
 3.api gateway server 
 4.user service 
 
-
 #Service Direct Url 
 curl -v localhost:8181/api/wish
 

@@ -6,6 +6,7 @@ import java.util.Collections;
 
 import io.jsonwebtoken.Jwts;
 import javax.servlet.FilterChain;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -69,6 +70,11 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
         Long now = System.currentTimeMillis();
         String token = Jwts.builder()
+                .setClaims(new HashMap<String,Object>(){
+                    {
+                        put("lastData",new Date(now + jwtConfig.getExpiration() * 1000).getTime());
+                    }
+                })
                 .setSubject(auth.getName())
                 // Convert to list of strings.
                 // This is important because it affects the way we get them back in the Gateway.
