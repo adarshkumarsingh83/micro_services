@@ -1,0 +1,35 @@
+
+#To down load thee zookeeper 
+http://zookeeper.apache.org/releases.html#download
+
+#to configure the zookeeper 
+create and set configuration
+
+$ vi /conf/zoo.cfg
+-----------------------------
+#Set dataDir the same level of access you 
+#need for running zookeeper. Otherwise, the zookeeper 
+#executable will complain about insufficient access
+dataDir=/var/zookeeper
+#This will set zookeeper to run on localhost:2181
+clientPort=2181
+-----------------------------
+#Before starting provide the cmd to create a dir and file for zookeeper 
+$ sudo mkdir /var/zookeeper
+$ sudo touch /var/zookeeper/zookeeper_server.pid
+$ sudo chmod -R 777 /var/zookeeper/
+
+# To Start Zookeeper 
+$ sudo chmod -R 777  bin
+$ zookeeper-directory/bin/zkServer.sh
+
+
+#To build the application 
+$ mvn clean package 
+$ mvn spring-boot:run 
+
+#To Test the service 
+$ curl localhost:8081/api/client/massage
+
+#To stop the zookeeper 
+$ bin/zkServer.sh stop

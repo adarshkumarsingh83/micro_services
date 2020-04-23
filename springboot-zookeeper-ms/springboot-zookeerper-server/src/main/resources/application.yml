@@ -1,0 +1,10 @@
+server:
+  port: 9090
+  
+endpoints:
+  restart:
+    enabled: true
+    
+logging:
+  level:
+    org.apache.zookeeper.ClientCnxn: WARN

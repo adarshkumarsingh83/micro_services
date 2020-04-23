@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: zookeeper-client
+  cloud:
+    zookeeper:
+      discovery:
+        enabled: true
