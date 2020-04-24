@@ -20,8 +20,8 @@ $ sudo touch /var/zookeeper/zookeeper_server.pid
 $ sudo chmod -R 777 /var/zookeeper/
 
 # To Start Zookeeper 
-$ sudo chmod -R 777  bin
-$ zookeeper-directory/bin/zkServer.sh
+$ sudo chmod -R 777  zookeeper-directory/bin
+$ zookeeper-directory/bin/zkServer.sh start
 
 
 #To build the application 
@@ -32,4 +32,7 @@ $ mvn spring-boot:run
 $ curl localhost:8081/api/client/massage
 
 #To stop the zookeeper 
-$ bin/zkServer.sh stop
+$ zookeeper-directory/bin/zkServer.sh stop
+
+#To Restart the zookeeper
+$ zookeeper-directory/bin/zkServer.sh restart
