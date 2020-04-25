@@ -1,18 +1,27 @@
 
+
+server:
+  port: 8888
+
 spring:
+  profiles:
+    active: native, git, vault
   application:
     name: config-server
-  profiles:
-    active:  vault, git
   cloud:
     config:
       server:
-        vault:
-          port: 8200
-          host: localhost
+        native:
+          searchLocations: file://${user.home}/config-repo # create a application.yml with some config props in it
         git:
-          uri: https://github.com/adarshkumarsingh83/spring-cloudconfig
+          uri: https://github.com/adarshkumarsingh83/configuration
           searchPaths: espark-server-config
+        vault:
+          token: myroot
+          port: 8200
+          host: 127.0.0.1
+          backend: secret
+          kv-version: 2
 
 management:
   endpoints:
