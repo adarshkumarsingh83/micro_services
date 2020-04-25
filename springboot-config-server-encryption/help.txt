@@ -1,0 +1,77 @@
+https://www.devglan.com/spring-cloud/encrypt-decrypt-cloud-config-properties
+
+==========================================================================================
+symmetric encryption
+==========================================================================================
+1.Download JCE for java 8 
+and then copy the file into the location 
+unzip the file we will get "UnlimitedJCEPolicyJDK8" folder 
+        local_policy.jar             
+        US_export_policy.jar   
+copy the above listed file into the location         
+location is for mac 
+/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/security/
+
+
+## Add the below property into the configuration server and then run it and test it 
+application.properties
+encrypt.key=secretkey
+
+#To test encryption 
+$ curl -X POST http://localhost:8888/encrypt -d <string to encrypt>
+
+#To Test the de-encryption
+$ curl -X POST http://localhost:8012/decrypt -d <encrypted string>
+
+#once the encryption and decryption is working fine then add into the configuration 
+encrypted.property.key={cipher}xxxxxxxxxx
+
+==========================================================================================
+asymmetric encryption which is must
+==========================================================================================
+#To to the resource dir of the configuration server 
+$ cd /src/main/resources
+
+#Generrated the jsk file 
+$ keytool -genkeypair -alias mytestkey -keyalg RSA \
+  -dname "CN=Web Server,OU=Unit,O=Organization,L=City,S=State,C=US" \
+  -keypass changeme -keystore server.jks -storepass letmein
+  
+#Add the properties into the configuration file 
+application.properties
+encrypt.key-store.location=classpath:/server.jks
+encrypt.key-store.password=letmein
+encrypt.key-store.alias=mytestkey
+encrypt.key-store.secret=changeme  
+  
+#To test encryption 
+$ curl -X POST http://localhost:8888/encrypt -d <string to encrypt>
+
+#To Test the de-encryption
+$ curl -X POST http://localhost:8888/decrypt -d <encrypted string>
+
+#once the encryption and decryption is working fine then add into the configuration 
+encrypted.property.key={cipher}xxxxxxxxxx
+
+
+###Configuration for the Configuration server client 
+application.properties
+server.port=8080
+security.basic.enabled=false
+management.security.enabled=false   
+
+
+
+### TESTING 
+$ curl -X POST http://localhost:8888/encrypt -d espark
+AQBnA6L8+auLXW3g+k1luScRW6dEu2yXWU1kHHeeLbmq+H3+hL7Ln9AcOGOQ1q0pNVYyC5Q5rhKXWvUoX5RoB/4xbMhtFwBmY0cUiBqu2FFVTvmobPVD4RyEdA2nJU+mKBrXneepHcQG8G/0otuEogZTJGao1AqfxkQCAQFHbdh02/eiYvYG35MqNsfEQ7nl1C2/u25jqsyQaJv5L4a1kFbk/Q4zAK4kSKyKP8BWHRe0tA1LoVLzvYPWprwOn1xHhTkQS9pHb2Y/VilQwrhXNEVzUJZL0ZU/f4VAbZjxymtKrH7yjk4z1FaCmDGSWKnV1oKjJ5wMD7vUNKassMKl+lZe2/+OfrEnJxp+ILOTUdJ9+xyVJG++TjKab6zH4MiFbZA=
+
+$ curl -X POST http://localhost:8888/decrypt -d AQBnA6L8+auLXW3g+k1luScRW6dEu2yXWU1kHHeeLbmq+H3+hL7Ln9AcOGOQ1q0pNVYyC5Q5rhKXWvUoX5RoB/4xbMhtFwBmY0cUiBqu2FFVTvmobPVD4RyEdA2nJU+mKBrXneepHcQG8G/0otuEogZTJGao1AqfxkQCAQFHbdh02/eiYvYG35MqNsfEQ7nl1C2/u25jqsyQaJv5L4a1kFbk/Q4zAK4kSKyKP8BWHRe0tA1LoVLzvYPWprwOn1xHhTkQS9pHb2Y/VilQwrhXNEVzUJZL0ZU/f4VAbZjxymtKrH7yjk4z1FaCmDGSWKnV1oKjJ5wMD7vUNKassMKl+lZe2/+OfrEnJxp+ILOTUdJ9+xyVJG++TjKab6zH4MiFbZA=
+
+## add the data into file in github
+espark.secret.prop={cipher}AQBnA6L8+auLXW3g+k1luScRW6dEu2yXWU1kHHeeLbmq+H3+hL7Ln9AcOGOQ1q0pNVYyC5Q5rhKXWvUoX5RoB/4xbMhtFwBmY0cUiBqu2FFVTvmobPVD4RyEdA2nJU+mKBrXneepHcQG8G/0otuEogZTJGao1AqfxkQCAQFHbdh02/eiYvYG35MqNsfEQ7nl1C2/u25jqsyQaJv5L4a1kFbk/Q4zAK4kSKyKP8BWHRe0tA1LoVLzvYPWprwOn1xHhTkQS9pHb2Y/VilQwrhXNEVzUJZL0ZU/f4VAbZjxymtKrH7yjk4z1FaCmDGSWKnV1oKjJ5wMD7vUNKassMKl+lZe2/+OfrEnJxp+ILOTUdJ9+xyVJG++TjKab6zH4MiFbZA=
+
+
+http://localhost:8888/config-server/env
+
+$ curl http://localhost:8081/api/data

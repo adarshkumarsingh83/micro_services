@@ -1,0 +1,16 @@
+server:
+  port: 8888
+
+logger:
+  level:
+    root: DEBUG
+
+# show full health details at /health
+endpoints.health.sensitive: false
+
+
+info:
+  app:
+    name: SPRING BOOT CONFIG SERVER
+    description: spring boot configuration server
+    version: 1.0.0
