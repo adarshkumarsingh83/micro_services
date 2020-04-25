@@ -1,0 +1,25 @@
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active:  vault, git
+  cloud:
+    config:
+      server:
+        vault:
+          port: 8200
+          host: localhost
+        git:
+          uri: https://github.com/adarshkumarsingh83/spring-cloudconfig
+          searchPaths: espark-server-config
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, env
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

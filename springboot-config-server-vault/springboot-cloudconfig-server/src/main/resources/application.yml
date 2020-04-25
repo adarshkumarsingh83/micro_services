@@ -1,0 +1,9 @@
+server:
+  port: 8888
+
+
+info:
+  app:
+    name: SPRING BOOT CONFIG SERVER
+    description: spring boot configuration server
+    version: 1.0.0
