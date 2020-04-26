@@ -27,6 +27,11 @@ $ curl -X POST http://localhost:8012/decrypt -d <encrypted string>
 encrypted.property.key={cipher}xxxxxxxxxx
 
 ==========================================================================================
+Download jce from oracle site and add to the below location 
+local_policy.jar             
+US_export_policy.jar  
+/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre/lib/security
+==========================================================================================
 asymmetric encryption which is must
 ==========================================================================================
 #To to the resource dir of the configuration server 
