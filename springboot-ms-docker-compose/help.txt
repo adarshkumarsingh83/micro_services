@@ -2,7 +2,7 @@
 $ mvn clean package
 
 #To start the docker containers
-$ docker-compose up 
+$ docker-compose up
 
 
 ## TO TEST THE API 
