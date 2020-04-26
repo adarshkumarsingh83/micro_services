@@ -1,0 +1,124 @@
+version: "3"
+services:
+  springboot-eureka-server:
+    image: springboot-eureka-server
+    build:
+      context: ./springboot-eureka-server
+      dockerfile: Dockerfile
+    volumes:
+      - /data/springboot-eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - spring-ms
+  springboot-config-server:
+    image: springboot-config-server
+    build:
+      context: ./springboot-config-server
+      dockerfile: Dockerfile
+    volumes:
+      - /data/springboot-config-server
+    ports:
+      - "8888:8888"
+    links:
+      - springboot-eureka-server
+    depends_on:
+      - springboot-eureka-server
+    networks:
+      - spring-ms
+    #entrypoint: /bin/sh
+    command: >
+      -c "
+      while ! (nc -z springboot-eureka-server 8761); do sleep 5; echo 'Waiting for eureka-server services to start-up...'; done;
+      java -jar -Dspring.profiles.active=default /springboot-eureka-server.jar
+      "
+  address-service:
+    image: address-service
+    build:
+      context: ./address-service
+      dockerfile: Dockerfile
+    volumes:
+      - /data/address-service
+    links:
+      - springboot-eureka-server
+      - springboot-config-server
+    depends_on:
+      - springboot-eureka-server
+      - springboot-config-server
+    networks:
+      - spring-ms
+    #entrypoint:  /bin/sh
+    command: >
+      -c "
+      while ! (nc -z springboot-config-server 8888 && nc -z springboot-eureka-server 8761); do sleep 5; echo 'Waiting for eureka-server and config-server services to start-up...'; done;
+      java -jar -Dspring.profiles.active=default /address-service.jar
+      "
+  employee-service:
+    image: employee-service
+    build:
+      context: ./employee-service
+      dockerfile: Dockerfile
+    volumes:
+      - /data/employee-service
+    links:
+      - springboot-eureka-server
+      - springboot-config-server
+    depends_on:
+      - springboot-eureka-server
+      - springboot-config-server
+    networks:
+      - spring-ms
+    #entrypoint: /bin/sh
+    command: >
+      -c "
+      while ! (nc -z springboot-config-server 8888 && nc -z springboot-eureka-server 8761); do sleep 5; echo 'Waiting for eureka-server and config-server services to start-up...'; done;
+      java -jar -Dspring.profiles.active=default /employee-service.jar
+      "
+  api-service:
+    image: api-service
+    build:
+      context: ./api-service
+      dockerfile: Dockerfile
+    volumes:
+      - /data/api-service
+    links:
+      - springboot-eureka-server
+      - springboot-config-server
+      - employee-service
+      - address-service
+    depends_on:
+      - springboot-eureka-server
+      - springboot-config-server
+    networks:
+      - spring-ms
+    #entrypoint:  /bin/sh
+    command: >
+      -c "
+      while ! (nc -z springboot-config-server 8888 && nc -z springboot-eureka-server 8761); do sleep 5; echo 'Waiting for eureka-server and config-server services to start-up...'; done;
+      java -jar -Dspring.profiles.active=default /api-service.jar
+      "
+  springboot-api-gateway:
+    image: springboot-api-gateway
+    build:
+      context: ./springboot-api-gateway
+      dockerfile: Dockerfile
+    volumes:
+      - /data/springboot-api-gateway
+    ports:
+      - "8080:8080"
+    links:
+      - springboot-eureka-server
+      - employee-service
+      - address-service
+    depends_on:
+      - springboot-eureka-server
+    networks:
+      - spring-ms
+    #entrypoint:  /bin/sh
+    command: >
+      -c "
+      while ! (nc -z springboot-config-server 8888 && nc -z springboot-eureka-server 8761); do sleep 5; echo 'Waiting for eureka-server and config-server services to start-up...'; done;
+      java -jar -Dspring.profiles.active=default /springboot-api-gateway.jar
+      "
+networks:
+  spring-ms:
