@@ -26,12 +26,6 @@ services:
       - springboot-eureka-server
     networks:
       - spring-ms
-    #entrypoint: /bin/sh
-    command: >
-      -c "
-      while ! (nc -z springboot-eureka-server 8761); do sleep 5; echo 'Waiting for eureka-server services to start-up...'; done;
-      java -jar -Dspring.profiles.active=default /springboot-eureka-server.jar
-      "
   address-service:
     image: address-service
     build:
@@ -47,12 +41,6 @@ services:
       - springboot-config-server
     networks:
       - spring-ms
-    #entrypoint:  /bin/sh
-    command: >
-      -c "
-      while ! (nc -z springboot-config-server 8888 && nc -z springboot-eureka-server 8761); do sleep 5; echo 'Waiting for eureka-server and config-server services to start-up...'; done;
-      java -jar -Dspring.profiles.active=default /address-service.jar
-      "
   employee-service:
     image: employee-service
     build:
@@ -68,12 +56,6 @@ services:
       - springboot-config-server
     networks:
       - spring-ms
-    #entrypoint: /bin/sh
-    command: >
-      -c "
-      while ! (nc -z springboot-config-server 8888 && nc -z springboot-eureka-server 8761); do sleep 5; echo 'Waiting for eureka-server and config-server services to start-up...'; done;
-      java -jar -Dspring.profiles.active=default /employee-service.jar
-      "
   api-service:
     image: api-service
     build:
@@ -91,12 +73,6 @@ services:
       - springboot-config-server
     networks:
       - spring-ms
-    #entrypoint:  /bin/sh
-    command: >
-      -c "
-      while ! (nc -z springboot-config-server 8888 && nc -z springboot-eureka-server 8761); do sleep 5; echo 'Waiting for eureka-server and config-server services to start-up...'; done;
-      java -jar -Dspring.profiles.active=default /api-service.jar
-      "
   springboot-api-gateway:
     image: springboot-api-gateway
     build:
@@ -114,11 +90,6 @@ services:
       - springboot-eureka-server
     networks:
       - spring-ms
-    #entrypoint:  /bin/sh
-    command: >
-      -c "
-      while ! (nc -z springboot-config-server 8888 && nc -z springboot-eureka-server 8761); do sleep 5; echo 'Waiting for eureka-server and config-server services to start-up...'; done;
-      java -jar -Dspring.profiles.active=default /springboot-api-gateway.jar
-      "
+
 networks:
   spring-ms:
