@@ -1,6 +1,4 @@
 
 #!/bin/bash
-cd ./employee-service &
-echo  pwd &
-nohup mvn spring-boot:run &
+java -jar ./employee-service/target/employee-service.jar &
 exit 0

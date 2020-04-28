@@ -1,6 +1,4 @@
 
 #!/bin/bash
-cd ./api-gateway &
-echo  pwd &
-nohup mvn spring-boot:run &
+java -jar ./api-gateway/target/api-gateway.jar &
 exit 0

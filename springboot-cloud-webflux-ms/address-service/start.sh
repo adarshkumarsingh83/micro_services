@@ -1,6 +1,4 @@
 
 #!/bin/bash
-cd ./address-service &
-echo  pwd &
-nohup mvn spring-boot:run &
+java -jar ./address-service/target/address-service.jar &
 exit 0

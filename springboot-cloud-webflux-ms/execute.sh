@@ -1,6 +1,6 @@
 
 #!/bin/bash
-echo pwd &
+echo $PWD &
 echo 'eureka-server exection' &
 ./eureka-server/start.sh &
  cd .. &

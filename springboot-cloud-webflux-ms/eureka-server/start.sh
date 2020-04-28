@@ -1,6 +1,4 @@
 
 #!/bin/bash
-cd ./eureka-server &
-echo  pwd &
-nohup mvn spring-boot:run &
+java -jar ./eureka-server/target/eureka-server.jar &
 exit 0

@@ -1,6 +1,4 @@
 
 #!/bin/bash
-cd ./config-server &
-echo  pwd &
-nohup mvn spring-boot:run &
+java -jar ./config-server/target/config-server.jar &
 exit 0
