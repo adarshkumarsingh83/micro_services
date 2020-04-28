@@ -1,0 +1,19 @@
+server:
+  port: 8888
+
+# show full health details at /health
+endpoints.health.sensitive: false
+
+logging:
+  level:
+    root: DEBUG
+    com:
+      espark:
+        adarsh: DEBUG
+
+## Configuring /info endpoint details
+info:
+  app:
+    name: CONFIG SERVER
+    description: spring boot config server
+    version: 1.0.0

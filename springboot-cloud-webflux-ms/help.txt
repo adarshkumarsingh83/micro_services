@@ -1,0 +1,35 @@
+
+#build and run
+$ mvn clean package
+
+#To provide permission for script execution
+$ cd ..
+$ sudo chmod -R 777 ./springboot-cloud-webflux-ms
+
+#Start in the order
+1.eureka-server 
+2.config server
+3.api gateway
+4.employee-service
+5.address-service
+
+#To execute the applications
+$ mvn spring-boot:run
+or
+$ sh execute.sh
+
+#eureka server url for browser 
+http://localhost:8761/
+
+
+#With api gateway 
+curl -v localhost:8080/employee/message
+curl -v localhost:8080/address/message
+
+
+# Util Endpoint for listing services connected to eureka
+$ curl http://localhost:8761//api/service-discovery
+
+# Util Endpoint for getting services details
+$ http://localhost:8761//api/service-discovery/API-GATEWAY
+
