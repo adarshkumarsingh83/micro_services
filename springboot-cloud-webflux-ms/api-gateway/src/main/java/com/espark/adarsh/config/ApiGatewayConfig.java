@@ -12,7 +12,12 @@ public class ApiGatewayConfig {
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-
+                .route(r -> r.path("/api/**")
+                        //Pre and Post Filters provided by Spring Cloud Gateway
+                        .filters(f -> f.addRequestHeader("api-request", "api-request-header")
+                                .addResponseHeader("api-response", "api-response-header"))
+                        .uri("lb://api-service")
+                        .id("api-service"))
                 .route(r -> r.path("/employee/**")
                         //Pre and Post Filters provided by Spring Cloud Gateway
                         .filters(f -> f.addRequestHeader("employee-request", "employee-request-header")

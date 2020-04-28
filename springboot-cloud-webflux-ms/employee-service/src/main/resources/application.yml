@@ -1,22 +1,16 @@
+
 spring:
-  application:
-    name: employee-service
-  cloud:
-    config:
-      env: default # optional
-      label: master # optional
-      uri: http://localhost:8888 # optional
-
-server:
-  port: 0
-
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-  instance:
-    instance-id: ${spring.application.name}-${random.int}
-    hostname: localhost
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+  datasource:
+    url: jdbc:h2:mem:employeeDB
+    driver-class-name: org.h2.Driver
+    username: root
+    password: root
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  h2:
+    console:
+      enabled: true

@@ -15,9 +15,10 @@
     <modules>
         <module>eureka-server</module>
         <module>config-server</module>
-        <module>api-gateway</module>
         <module>address-service</module>
         <module>employee-service</module>
+        <module>api-service</module>
+        <module>api-gateway</module>
     </modules>
 
 </project>
