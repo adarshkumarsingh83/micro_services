@@ -25,7 +25,7 @@ eureka:
       defaultZone: http://springboot-eureka-server:8761/eureka
   instance:
     instance-id: ${spring.application.name}-${random.int}
-    hostname: springboot-eureka-server
+    hostname: springboot-config-server
     leaseRenewalIntervalInSeconds: 5
     preferIpAddress: true
 

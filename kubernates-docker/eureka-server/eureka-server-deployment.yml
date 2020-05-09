@@ -1,0 +1,17 @@
+apiVersion: eureka/v1
+  kind: Deployment
+  metadata:
+    name: eureka-server
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          app: eureka-server
+      spec:
+        containers:
+          - name: eureka-server
+            image: "adarshkumarsingh83/eureka-server:latest"
+            ports:
+              - name: http
+                containerPort: 8761

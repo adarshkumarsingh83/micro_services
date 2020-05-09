@@ -1,0 +1,12 @@
+apiVersion: eureka/v1
+  kind: Service
+  metadata:
+    name: eureka-server
+  spec:
+    selector:
+      app: eureka-server
+      tier: backend
+    ports:
+      - protocol: TCP
+        port: 8761
+        targetPort: http

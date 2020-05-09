@@ -1,0 +1,45 @@
+version: "3"
+services:
+  eureka-server:
+    image: eureka-server
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    volumes:
+      - /data/eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - spring-ms
+  employee-service:
+    image: employee-service
+    build:
+      context: ./employee-service
+      dockerfile: Dockerfile
+    volumes:
+      - /data/employee-service
+    links:
+      - eureka-server
+    depends_on:
+      - eureka-server
+    networks:
+      - spring-ms
+  api-gateway:
+    image: api-gateway
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    volumes:
+      - /data/api-gateway
+    ports:
+      - "8080:8080"
+    links:
+      - eureka-server
+      - employee-service
+    depends_on:
+      - eureka-server
+    networks:
+      - spring-ms
+
+networks:
+  spring-ms:

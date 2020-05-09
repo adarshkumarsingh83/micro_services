@@ -1,0 +1,90 @@
+#To Build the Application
+$ mvn clean package
+
+#To start the docker containers
+$ docker-compose up
+
+#To test the service
+$ curl http://localhost:8080/api/message
+$ curl http://localhost:8080/api/employees
+
+#TO LIST DOWN ALL THE IMAGES
+$ docker images
+
+#TO LIST ALL THE PROCESS
+$ docker ps -a
+
+# TO DELETE ALL THE CONTAINERS WITH VOLUMES
+$ docker rm -vf $(docker ps -a -q)
+
+# TO DELETE ALL THE IMAGES
+$ docker rmi -f $(docker images -a -q)
+
+========================================================================================================================
+############## EUREKA SERVER ##############
+#to build docker image for eureka-server
+$ cd /kubernates-docker/eureka-server
+$ docker image build -t eureka-server .
+
+# docker images push to docker hub
+$ docker image ls
+$ docker login
+
+# To create tag prefix with docker id for unique representation of image in docker hub
+$ docker image tag eureka-server adarshkumarsingh83/eureka-server
+
+#To push to the docker hub
+$ docker image push adarshkumarsingh83/eureka-server
+
+############## API GATEWAY ##############
+#to build docker image for api-gateway
+$ cd /kubernates-docker/api-gateway
+$ docker image build -t api-gateway .
+
+# docker images push to docker hub
+$ docker image ls
+$ docker login
+
+# To create tag prefix with docker id for unique representation of image in docker hub
+$ docker image tag api-gateway adarshkumarsingh83/api-gateway
+
+#To push to the docker hub
+$ docker image push adarshkumarsingh83/api-gateway
+
+############## EMPLOYEE SERVICE ##############
+#to build docker image for employee-service
+$ cd /kubernates-docker/employee-service
+$ docker image build -t employee-service .
+
+# docker images push to docker hub
+$ docker image ls
+$ docker login
+
+# To create tag prefix with docker id for unique representation of image in docker hub
+$ docker image tag employee-service adarshkumarsingh83/employee-service
+
+#To push to the docker hub
+$ docker image push adarshkumarsingh83/employee-service
+
+========================================================================================================================
+
+# to list the docker image
+$ docker image ls
+
+#To run the image
+$ docker run -d -p 8080:8080 eureka-server
+
+###docker images push to docker hub
+
+#To list the docker image
+$ docker image ls
+
+#To login to docker hub
+$ docker login
+
+#To create tag prefix with docker id for unique representation of image in docker hub
+$ docker image tag <image-name> <your docker id>/<image-name>
+
+#To push to the docker hub
+$ docker image push <your docker id>/<image-name>
+

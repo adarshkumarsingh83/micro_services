@@ -1,0 +1,19 @@
+
+server:
+  port: 0
+
+spring:
+  application:
+    name: employee-service
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}-${random.int}
+    hostname: employee-service
+    leaseRenewalIntervalInSeconds: 5
+    preferIpAddress: true
