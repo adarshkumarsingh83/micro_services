@@ -1,0 +1,38 @@
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 10
+
+espark:
+  appconfig:
+    zone1-service-alias: zone1
+    zone1-service-port: 8084
+    zone1-address: eureka-zone1:8761
+    zone2-service-alias: zone2
+    zone2-service-port: 8085
+    zone2-address: eureka-zone2:8762
+
+---
+spring:
+  profiles: zone1
+  application:
+    name: ${espark.appconfig.zone1-service-alias}
+server:
+  port: ${espark.appconfig.zone1-service-port}
+# to make it more interesting, let's have each client registering at a different instance
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${espark.appconfig.zone1-address}/eureka
+
+---
+spring:
+  profiles: zone2
+  application:
+    name: ${espark.appconfig.zone2-service-alias}
+server:
+  port: ${espark.appconfig.zone2-service-port}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${espark.appconfig.zone2-address}/eureka
+

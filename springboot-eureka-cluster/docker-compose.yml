@@ -1,0 +1,63 @@
+version: "3"
+services:
+  eureka-zone1:
+    image: eureka-server
+    build:
+      context: ./eureka-cluster-server
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    networks:
+      - network-eureka
+    environment:
+      - SPRING_PROFILES_ACTIVE=zone1
+  eureka-zone2:
+    image: eureka-server
+    build:
+      context: ./eureka-cluster-server
+      dockerfile: Dockerfile
+    ports:
+      - "8762:8762"
+    networks:
+      - network-eureka
+    environment:
+      - SPRING_PROFILES_ACTIVE=zone2
+
+  client-zone1:
+    image: eureka-client
+    build:
+      context: ./springboot-cluster-client
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    networks:
+      - network-eureka
+    links:
+      - eureka-zone1
+      - eureka-zone2
+    depends_on:
+      - eureka-zone1
+      - eureka-zone2
+    environment:
+      - SPRING_PROFILES_ACTIVE=zone1
+
+  client-zone2:
+    image: eureka-client
+    build:
+      context: ./springboot-cluster-client
+      dockerfile: Dockerfile
+    ports:
+      - "8085:8085"
+    networks:
+      - network-eureka
+    links:
+      - eureka-zone1
+      - eureka-zone2
+    depends_on:
+      - eureka-zone1
+      - eureka-zone2
+    environment:
+      - SPRING_PROFILES_ACTIVE=zone2
+
+networks:
+  network-eureka:

@@ -1,0 +1,49 @@
+espark:
+  zone1Port: 8761
+  zone2Port: 8762
+
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      base-path: /
+      # By default, only 'health' and 'info' are accessible via web
+      exposure:
+        include: '*'
+
+---
+spring:
+  profiles: zone1
+eureka:
+  instance:
+    hostname: eureka-zone1
+    # Either this one or the spring boot name must be the same
+    # (it works without setting it too, using the alias UNKNOWN)
+    appname: eureka-cluster
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-zone2:${espark.zone2Port}/eureka
+    register-with-eureka: true
+    fetch-registry: true
+server:
+  port: ${espark.zone1Port}
+
+---
+spring:
+  profiles: zone2
+eureka:
+  instance:
+    hostname: eureka-zone2
+    appname: eureka-cluster
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-zone1:${espark.zone1Port}/eureka
+    register-with-eureka: true
+    fetch-registry: true
+server:
+  port: ${espark.zone2Port}

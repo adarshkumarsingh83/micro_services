@@ -1,0 +1,49 @@
+========================================================================================================================
+SERVER
+========================================================================================================================
+# STEP 1
+$ sudo vi /private/etc/hosts
+--------------------------------
+  127.0.0.1 eureka-zone1
+  127.0.0.1 eureka-zone2
+--------------------------------
+:wq
+$ dscacheutil -flushcache
+
+# STEP 2
+$ mvn spring-boot:run -Dspring-boot.run.profiles=zone1
+$ mvn spring-boot:run -Dspring-boot.run.profiles=zone2
+
+# STEP 3
+http://localhost:8761
+http://localhost:8762
+========================================================================================================================
+CLIENT
+========================================================================================================================
+
+$ mvn spring-boot:run -Dspring-boot.run.profiles=zone1
+$ mvn spring-boot:run -Dspring-boot.run.profiles=zone2
+
+curl localhost:8084/zone1-server
+curl localhost:8084/zone1-server-wish
+
+curl localhost:8085/zone2-server
+curl localhost:8085/zone2-server-wish
+
+========================================================================================================================
+DOCKER-COMPOSE
+========================================================================================================================
+$ docker-compose up
+
+
+#TO LIST DOWN ALL THE IMAGES
+$ docker images
+
+#TO LIST ALL THE PROCESS
+$ docker ps -a
+
+# TO DELETE ALL THE CONTAINERS WITH VOLUMES
+$ docker rm -vf $(docker ps -a -q)
+
+# TO DELETE ALL THE IMAGES
+$ docker rmi -f $(docker images -a -q)
