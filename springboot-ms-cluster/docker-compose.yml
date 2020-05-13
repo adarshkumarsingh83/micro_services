@@ -22,7 +22,6 @@ services:
       - network-eureka
     environment:
       - SPRING_PROFILES_ACTIVE=zone2
-
   client-zone1:
     image: eureka-client
     build:
