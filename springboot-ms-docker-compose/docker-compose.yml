@@ -21,7 +21,7 @@ services:
     ports:
       - "8888:8888"
     environment:
-      - "SPRING_PROFILES_ACTIVE=dev"
+      - "SPRING_PROFILES_ACTIVE=docker"
     links:
       - springboot-eureka-server
     depends_on:
@@ -36,7 +36,7 @@ services:
     volumes:
       - /data/address-service
     environment:
-      - "SPRING_PROFILES_ACTIVE=dev"
+      - "SPRING_PROFILES_ACTIVE=docker"
     links:
       - springboot-eureka-server
       - springboot-config-server
@@ -53,7 +53,7 @@ services:
     volumes:
       - /data/employee-service
     environment:
-      - "SPRING_PROFILES_ACTIVE=dev"
+      - "SPRING_PROFILES_ACTIVE=docker"
     links:
       - springboot-eureka-server
       - springboot-config-server
@@ -70,7 +70,7 @@ services:
     volumes:
       - /data/api-service
     environment:
-      - "SPRING_PROFILES_ACTIVE=dev"
+      - "SPRING_PROFILES_ACTIVE=docker"
     links:
       - springboot-eureka-server
       - springboot-config-server
@@ -91,7 +91,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - "SPRING_PROFILES_ACTIVE=dev"
+      - "SPRING_PROFILES_ACTIVE=docker"
     links:
       - springboot-eureka-server
       - employee-service
