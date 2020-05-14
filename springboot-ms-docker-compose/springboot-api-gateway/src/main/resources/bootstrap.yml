@@ -9,6 +9,30 @@ spring:
     config:
       env: default # optional
       label: master # optional
+      uri: http://localhost:8888 # optional
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}-${random.int}
+    hostname: springboot-api-gateway
+    leaseRenewalIntervalInSeconds: 5
+    preferIpAddress: true
+
+---
+
+spring:
+  application:
+    name: api-gateway
+  profiles: docker
+  cloud:
+    config:
+      env: default # optional
+      label: master # optional
       uri: http://springboot-config-server:8888 # optional
 
 eureka:
