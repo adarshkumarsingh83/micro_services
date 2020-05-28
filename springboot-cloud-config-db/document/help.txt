@@ -1,0 +1,20 @@
+
+
+$ mvn clean package
+$ mvn spring-boot:run
+
+#TO TEST THE CONFIGURATION SERVER DIRECTLY
+http://localhost:8888/{config-server-client-application-name}}/{profile-name}/{label-name}
+http://localhost:8888/espark-config-client/dev/latest
+http://localhost:8888/espark-config-client/prod/latest
+
+
+#TO VIEW THE H2 DB DATA
+#log into the homepage of db
+http://localhost:8888/h2-console
+
+#TO GET THE CONFIGURATIONS FROM THE CLIENT
+http://localhost:8080/api/config-values
+
+// This will allow us to reinitialize this controller to get any new config
+// values when the /refresh endpoint is POSTed to.
