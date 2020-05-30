@@ -1,0 +1,33 @@
+logging:
+  level:
+    com.espark.adarsh: TRACE
+
+server:
+  port: 8888
+spring:
+  profiles:
+    active: jdbc
+  cloud:
+    config:
+      server:
+        jdbc:
+          sql: select KEY, VALUE from PROPERTIES where APPLICATION=? and PROFILE=? and LABEL=?
+          order: 1
+  datasource:
+    hikari:
+      connection-timeout: 5000
+      maximum-pool-size:  10
+    url: jdbc:h2:mem:configDB
+    driver-class-name: org.h2.Driver
+    username: root
+    password: root
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+
+  h2:
+    console:
+      enabled: true

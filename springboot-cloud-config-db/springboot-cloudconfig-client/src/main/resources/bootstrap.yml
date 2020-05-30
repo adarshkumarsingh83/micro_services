@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: espark-config-client
+  profiles:
+    active: dev
+    #active: prod
+  cloud:
+    config:
+      label: latest # optional
+      uri: http://localhost:8888 # optional
