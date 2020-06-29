@@ -1,0 +1,36 @@
+$ mvn clean package
+$ docker-compose up
+$ docker-compose down
+
+# TO DELETE ALL THE CONTAINERS WITH VOLUMES
+$ docker rm -vf $(docker ps -a -q)
+
+# TO DELETE ALL THE IMAGES
+$ docker rmi -f $(docker images -a -q)
+
+----------------------------------------------------------------------------------
+EXECUTION HELP 
+----------------------------------------------------------------------------------
+#Prometheus endpoints for application
+http://localhost:9090/targets
+
+# Grafana Login
+http://localhost:3000/login
+admin/password
+
+#Configure the application
+1.create a datasource
+select Prometheus then provide the url
+ http://prometheus:9090
+2.create a new dashbaord and add a graph
+a.select the grap dashbaord edit it the graph dashboard
+b.General provide the title as
+springboot dashboard
+c.go to metrics and select prometheus data source
+d.the and provide the below query to the qurary tab
+  jvm_memory_used_bytes{job="springboot-micrometer-prometheus-grafana",area="heap"}
+e.provide below value to the legend format
+{{id}}
+
+
+

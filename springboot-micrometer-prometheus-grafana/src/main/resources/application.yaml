@@ -1,0 +1,27 @@
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: DEBUG
+    com.espark.adarsh: DEBUG
+
+spring:
+  application:
+    name: springboot-micrometer-prometheus-grafana
+
+
+---
+
+
+spring:
+  application:
+    name: springboot-micrometer-prometheus-grafana
+  profiles:
+    - docker
+
+logging:
+  level:
+    root: DEBUG
+    com.espark.adarsh: DEBUG
