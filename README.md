@@ -25,7 +25,7 @@
 > .
 > .
 > .
-* ## spring-boot-hystrix				
+* ## springboot-hystrix				
 > descripition:
 > .
 > .

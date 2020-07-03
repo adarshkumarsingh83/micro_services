@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.espark.adarsh</groupId>
-    <artifactId>spring-boot-hystrix</artifactId>
+    <artifactId>springboot-hystrix</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
-    <name>spring-boot-hystrix</name>
+    <name>springboot-hystrix</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
