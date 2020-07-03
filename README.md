@@ -1,7 +1,10 @@
 # ** SPRING BOOT MICROSERVICES EXAMPLES **
 
-## DOCUMENTS					
-
+* ## DOCUMENTS					
+> descripition:
+> . Contains some step by step helping documen for 
+> . configurations and other things 
+> .	also contains the intellj helps 
 * ## spring-boot-admin	
 > descripition:
 > .
