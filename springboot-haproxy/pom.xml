@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.espark.adarsh</groupId>
-	<artifactId>haproxy-springboot</artifactId>
+	<artifactId>springboot-haproxy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>web-services</module>
     </modules>
     <packaging>pom</packaging>
 
-	<name>haproxy-springboot</name>
+	<name>springboot-haproxy</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
