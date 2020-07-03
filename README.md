@@ -157,7 +157,7 @@
 > .
 > .
 
-* ## hystrix-circuit-breaker				
+* ## springboot-hystrix-circuit-breaker		
 > descripition:
 > .
 > .
@@ -187,7 +187,7 @@
 > .
 > .
 
-* ## sluth-zipkin-tracing				
+* ## springboot-sluth-zipkin-tracing			
 > descripition:
 > .
 > .
