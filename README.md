@@ -72,7 +72,7 @@
 > .
 > .
 
-* ## springboot-oauth-full-ms			
+* ## springboot-oauth-ms			
 > descripition:
 > .
 > .
