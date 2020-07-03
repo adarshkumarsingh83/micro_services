@@ -54,7 +54,7 @@
 > .
 > .
 
-* ## SPRING-BOOT-MS-AGGREATOR			
+* ## springboot-ms-aggregator			
 > descripition:
 > .
 > .
@@ -72,7 +72,7 @@
 > .
 > .
 
-* ## SPRINGBOOT-OAUTH-FULL-MS			
+* ## springboot-oauth-full-ms			
 > descripition:
 > .
 > .
@@ -91,7 +91,7 @@
 > eureka as registry server 
 > and sample api services 
 
-* ## SpringBootNetflixOss				
+* ## springboot-netflixoss-ms				
 > descripition:
 > .
 > .
