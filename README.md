@@ -1,7 +1,7 @@
 # ** SPRING BOOT MICROSERVICES EXAMPLES ** 
-##spring boot micro_services samples 
+## spring boot micro_services samples 
 
-###DOCUMENTS					
+### DOCUMENTS					
 
 * spring-boot-admin				
 * springboot-config-server-vault
