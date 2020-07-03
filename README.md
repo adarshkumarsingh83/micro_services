@@ -29,7 +29,10 @@
 * springboot-cloud-config-git			
 >
 * springboot-netflix-cloud-ms
->
+> spring boot neflix cloud micro services sample consist of the 
+> zuul api gateway 
+> eureka as registry server 
+> and sample api services 
 * SpringBootNetflixOss				
 >
 * springboot-cloud-gateway			
