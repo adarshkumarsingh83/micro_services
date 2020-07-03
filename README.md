@@ -2,7 +2,7 @@
 
 ## DOCUMENTS					
 
-* ## ## spring-boot-admin	
+* ## spring-boot-admin	
 > descripition:
 > .
 > .
