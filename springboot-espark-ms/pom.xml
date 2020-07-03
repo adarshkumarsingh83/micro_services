@@ -11,8 +11,8 @@
         <version>1.5.7.RELEASE</version>
     </parent>
 
-    <groupId>spring-boot-espark-ms</groupId>
-    <artifactId>spring-boot-espark-ms</artifactId>
+    <groupId>springboot-espark-ms</groupId>
+    <artifactId>springboot-espark-ms</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
