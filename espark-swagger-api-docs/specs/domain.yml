@@ -1,0 +1,145 @@
+Entry:
+  type: object
+  properties:
+    key:
+      type: string
+      description: unique key for the map
+    value:
+      type: array
+      items:
+        type: string
+
+ErrorCode:
+  type: string
+  description: "error code"
+  enum:
+    - "NotFound"
+    - "AuthenticationFailed"
+    - "unexpected"
+
+Error:
+  type: object
+  properties:
+    status:
+      type: integer
+      format: int64
+      description: "http status"
+    exceptionCode:
+      $ref: '/specs/domain.yml#/ErrorCode'
+    errorMessage:
+      type: string
+      description: "descriptive error message"
+      example: "Please fix below errors"
+    requestedURI:
+      type: string
+      description: "requested Service Url"
+      example: "/login"
+    validationFailed:
+      type: array
+      items:
+        $ref: '/specs/domain.yml#/Entry'
+
+ExceptionResponse:
+  allOf:
+    - $ref: '/specs/domain.yml#/Error'
+    - type: object
+
+BeanType:
+  type: string
+  description: bean type
+  enum:
+    - login
+    - registration
+
+BaseBean:
+  type: object
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: "this is unique identifier for the node"
+      example: 1fe61-1fe6-4518-8990-480facc875ee
+    createdOn:
+      type: string
+      format: date-time
+      description: creation date
+      example: "2017-06-15T00:00:00-05:00"
+    createdBy:
+      type: string
+      description: created user
+      example: "admin"
+    lastModifiedOn:
+      type: string
+      format: date-time
+      description: last modification date
+      example: "2017-06-15T00:00:00-05:00"
+    lastModifiedBy:
+      type: string
+      description: last modification user
+      example: "admin"
+
+AbstractBean:
+  allOf:
+    - $ref: "/specs/domain.yml#/BaseBean"
+    - type: object
+      properties:
+        active:
+          type: boolean
+          description: is data active or not
+          example: false
+
+LoginBean:
+  type: object
+  properties:
+    type:
+      $ref: "/specs/domain.yml#/BeanType"
+      example: login
+    username:
+      type: string
+      example: 'some user name'
+      description: user name for login
+    userpwd:
+      type: string
+      example: 'some pwd for user'
+      description: user pwd for login
+
+LoginResponseBean:
+  type: object
+  properties:
+    message:
+      type: string
+      example: 'successful login'
+      description: details about the respone
+
+RegistrationBean:
+  type: object
+  properties:
+    type:
+      $ref: "/specs/domain.yml#/BeanType"
+      example: registration
+    username:
+      type: string
+      example: 'some user name for registration'
+      description: user name for registration
+    userpwd:
+      type: string
+      example: 'some pwd for for registration '
+      description: user pwd for registration
+
+RegistrationResponseBean:
+  type: object
+  properties:
+    message:
+      type: string
+      example: 'successful registration'
+      description: details about the respone
+
+FunctionalBean:
+  allOf:
+    - $ref: "/specs/domain.yml#/AbstractBean"
+    - type: object
+      properties:
+        operation:
+          type: string
+          description: name of operation
+          example: create, update, delete

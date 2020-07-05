@@ -1,0 +1,32 @@
+## Ignore project files created by Eclipse
+.settings/
+/bin/
+.project
+.classpath
+
+## Ignore project files created by IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
+overlays/
+
+## Ignore project files created by NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+META-INF/
+
+##Mac noise
+.DS_Store
+
+##ignore gradle build
+.gradle
+
+##ignore generated files and folders
+node_modules/
+package-lock.json

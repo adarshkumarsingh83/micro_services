@@ -1,0 +1,101 @@
+UnExpectedErrorResponseObject:
+  description: |
+    Unexpected error. Here are the examples<br/>
+    <strong>Null Pointer</strong>
+      ````
+        {
+          "status": 500,
+          "error": "unexpected",
+          "message": "null",
+          "exception": "NullPointerException"
+        }
+      ````
+  content:
+    application/json:
+      schema:
+        $ref: '/specs/domain.yml#/ExceptionResponse'
+      examples:
+        "NullPointer":
+          status: 500
+          error: "unexpected"
+          message: "null"
+          exception: "NullPointerException"
+
+UnAuthenticatedErrorResponseObject:
+  description: |
+    Un-authenticated request. Here is the example<br/>
+      ````
+        {
+          "status": 401,
+          "error": "AuthenticationFailed",
+          "message": "Session timed out"
+        }
+    ````
+  content:
+    application/json:
+      schema:
+        $ref: '/specs/domain.yml#/ExceptionResponse'
+      examples:
+        "default":
+          status: 401
+          error: "AuthenticationFailed"
+          message: "Session timed out"
+
+UnAuthorizedErrorResponseObject:
+  description: |
+    Un-authorized request. Here is the example<br/>
+    ````
+    {
+      "status": 403,
+      "error": "un-authorized",
+      "message": "User doesn't have necessary privileges"
+    }
+    ````
+  content:
+    application/json:
+      schema:
+        $ref: '/specs/domain.yml#/ExceptionResponse'
+      examples:
+        "default":
+          status: 403
+          error: "un-authorized"
+          message: "User doesn't have necessary privileges"
+
+ResourceNotFoundResponseObject:
+  description: |
+    Requested resource not found. Here is the example<br/>
+    ````
+    {
+      "status": 404,
+      "error": "NotFound",
+      "message": "This asset is not available."
+    }
+    ````
+  content:
+    application/json:
+      schema:
+        $ref: '/specs/domain.yml#/ExceptionResponse'
+      examples:
+        "default":
+          status: 404
+          error: "NotFound"
+          message: "This asset is not available."
+
+ValidationErrorResponseObject:
+  description: |
+    Validation error. Here are the examples <br/>
+    <strong>validation errors</strong>
+    ````
+
+    {
+      "requestedURI": "/somethigns url",
+      "exceptionCode": "AuthenticationFailed",
+      "errorMessage": "unauthorised request"
+      "validationFailed" [{"username":["null value ","empty value "]}]
+    }
+
+    ````
+  content:
+    application/json:
+      schema:
+        $ref: '/specs/domain.yml#/ExceptionResponse'

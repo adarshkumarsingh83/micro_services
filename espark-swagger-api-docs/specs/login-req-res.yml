@@ -1,0 +1,34 @@
+
+LoginRequestObject:
+  description: |
+    Login Response object. Here are the examples <br/><br/>
+    <strong>login</strong>
+    ````
+
+      {
+        "username":"someuser",
+         "userpwd":"somepwd"
+      }
+
+    ````
+  required: true
+  content:
+    'application/json':
+      schema:
+        $ref: "/specs/domain.yml#/LoginBean"
+
+
+LoginResponseObject:
+  description: |
+    Login Response object. Here are the examples <br/><br/>
+    ````
+
+        {
+           "message":"successful login"
+        }
+
+    ````
+  content:
+    application/json:
+      schema:
+        $ref: '/specs/domain.yml#/LoginResponseBean'

@@ -1,0 +1,171 @@
+openapi: 3.0.0
+
+info:
+  description: This is an Espark API
+  version: "2.0.0"
+  title: Espark API
+  contact:
+    email: adarsh.kumar@espark.com
+
+servers:
+- description: Integration
+  url: https://localhost:8080/api/v2
+- description: Production
+  url: https://localhost:9090/api/v2
+
+
+
+tags:
+- name: Authentication
+  description: Authentication Tag
+- name: Operation
+  description: Some Operation Tag
+
+paths:
+  /login:
+    post:
+      tags:
+      - Authentication
+      summary: Login Operation
+      operationId: login
+      description: Login Process
+      requestBody:
+        $ref: '/specs/login-req-res.yml#/LoginRequestObject'
+      responses:
+        '200':
+          $ref: '/specs/login-req-res.yml#/LoginResponseObject'
+        '400':
+          $ref: '/specs/global-error-responses.yml#/ValidationErrorResponseObject'
+        '500':
+          $ref: '/specs/global-error-responses.yml#/UnExpectedErrorResponseObject'
+        '401':
+          $ref: '/specs/global-error-responses.yml#/UnAuthenticatedErrorResponseObject'
+        '403':
+          $ref: '/specs/global-error-responses.yml#/UnAuthorizedErrorResponseObject'
+
+  /registration:
+    post:
+      tags:
+        - Authentication
+      summary: Registration Operation
+      operationId: registration
+      description: Registration Process
+      requestBody:
+        $ref: '/specs/registration-req-res.yml#/RegistrationRequestObject'
+      responses:
+        '200':
+          $ref: '/specs/registration-req-res.yml#/RegistrationResponseObject'
+        '400':
+          $ref: '/specs/global-error-responses.yml#/ValidationErrorResponseObject'
+        '500':
+          $ref: '/specs/global-error-responses.yml#/UnExpectedErrorResponseObject'
+        '401':
+          $ref: '/specs/global-error-responses.yml#/UnAuthenticatedErrorResponseObject'
+        '403':
+          $ref: '/specs/global-error-responses.yml#/UnAuthorizedErrorResponseObject'
+
+
+  /operation-function:
+    post:
+      tags:
+      - Operation
+      summary: CREATE Content
+      operationId: createContent
+      description: Create Content
+      requestBody:
+        $ref: '/specs/operation-req-res.yml#/OperationRequestObject'
+      responses:
+        '200':
+          $ref: '/specs/operation-req-res.yml#/OperationResponseObject'
+        '400':
+          $ref: '/specs/global-error-responses.yml#/ValidationErrorResponseObject'
+        '500':
+          $ref: '/specs/global-error-responses.yml#/UnExpectedErrorResponseObject'
+        '401':
+          $ref: '/specs/global-error-responses.yml#/UnAuthenticatedErrorResponseObject'
+        '403':
+          $ref: '/specs/global-error-responses.yml#/UnAuthorizedErrorResponseObject'
+
+
+  /operation-function/{id}:
+    get:
+      tags:
+      - Operation
+      summary: GET Content
+      operationId: getContentById
+      description: get Content by uuid
+      parameters:
+      - name: id
+        in: path
+        description: "UUID of the content. Refers to id property of Content object."
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          $ref: '/specs/operation-req-res.yml#/OperationResponseObject'
+        '404':
+          $ref: '/specs/global-error-responses.yml#/ResourceNotFoundResponseObject'
+        '500':
+          $ref: '/specs/global-error-responses.yml#/UnExpectedErrorResponseObject'
+        '401':
+          $ref: '/specs/global-error-responses.yml#/UnAuthenticatedErrorResponseObject'
+        '403':
+          $ref: '/specs/global-error-responses.yml#/UnAuthorizedErrorResponseObject'
+
+    put:
+      tags:
+      - Operation
+      summary: PUT Operation
+      operationId: putOperationById
+      description: put Operation by uuid
+      parameters:
+      - name: id
+        in: path
+        description: "UUID of the content. Refers to id property of Content object."
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        $ref: '/specs/operation-req-res.yml#/OperationRequestObject'
+      responses:
+        '200':
+          $ref: '/specs/operation-req-res.yml#/OperationResponseObject'
+        '404':
+          $ref: '/specs/global-error-responses.yml#/ResourceNotFoundResponseObject'
+        '400':
+          $ref: '/specs/global-error-responses.yml#/ValidationErrorResponseObject'
+        '500':
+          $ref: '/specs/global-error-responses.yml#/UnExpectedErrorResponseObject'
+        '401':
+          $ref: '/specs/global-error-responses.yml#/UnAuthenticatedErrorResponseObject'
+        '403':
+          $ref: '/specs/global-error-responses.yml#/UnAuthorizedErrorResponseObject'
+
+    delete:
+      tags:
+      - Operation
+      summary: DELETE Content
+      operationId: deleteOperationById
+      description: delete Content by uuid
+      parameters:
+      - name: id
+        in: path
+        description: "UUID of the content. Refers to id property of Content object."
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          $ref: '/specs/operation-req-res.yml#/OperationResponseObject'
+        '404':
+          $ref: '/specs/global-error-responses.yml#/ResourceNotFoundResponseObject'
+        '500':
+          $ref: '/specs/global-error-responses.yml#/UnExpectedErrorResponseObject'
+        '401':
+          $ref: '/specs/global-error-responses.yml#/UnAuthenticatedErrorResponseObject'
+        '403':
+          $ref: '/specs/global-error-responses.yml#/UnAuthorizedErrorResponseObject'

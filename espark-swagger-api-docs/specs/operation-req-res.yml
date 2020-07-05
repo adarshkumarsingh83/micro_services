@@ -1,0 +1,41 @@
+OperationRequestObject:
+  description: |
+    Operation Request object. Here are the examples <br/><br/>
+    <strong>operation request </strong>
+    ````
+
+      {
+        "id":null,
+         "createdOn":null,
+         "createdBy":null,
+         "lastModifiedOn":null,
+         "lastModifiedBy":null
+      }
+
+    ````
+  required: true
+  content:
+    'application/json':
+      schema:
+        $ref: "/specs/domain.yml#/FunctionalBean"
+
+
+OperationResponseObject:
+  description: |
+    Operation Response object. Here are the examples <br/><br/>
+    <strong>operation response </strong>
+    ````
+
+        {
+         "id":"1fe61-1fe6-4518-8990-480facc875ee",
+          "createdOn":"2017-06-15T00:00:00-05:00",
+          "createdBy":"admin",
+          "lastModifiedOn":"2017-06-15T00:00:00-05:00",
+          "lastModifiedBy":"admin"
+        }
+
+    ````
+  content:
+    application/json:
+      schema:
+        $ref: '/specs/domain.yml#/FunctionalBean'

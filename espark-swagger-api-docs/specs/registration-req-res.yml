@@ -1,0 +1,33 @@
+RegistrationRequestObject:
+  description: |
+    Registration Request object. Here are the examples <br/><br/>
+    <strong>login</strong>
+    ````
+
+      {
+        "username":"someuser",
+         "userpwd":"somepwd"
+      }
+
+    ````
+  required: true
+  content:
+    'application/json':
+      schema:
+        $ref: "/specs/domain.yml#/RegistrationBean"
+
+
+RegistrationResponseObject:
+  description: |
+    Registration Response object. Here are the examples <br/><br/>
+    ````
+
+        {
+           "message":"successful registration"
+        }
+
+    ````
+  content:
+    application/json:
+      schema:
+        $ref: '/specs/domain.yml#/RegistrationResponseBean'
