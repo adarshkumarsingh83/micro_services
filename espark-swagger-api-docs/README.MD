@@ -23,7 +23,7 @@
 ## TO RUN WITH DOCKER IMAGE
 
 * $ docker build -f Dockerfile -t <docker-image-name> .
-*  $ docker run it -d -p '<HOST PORT>:<DOCKER PORT> <docker-image-name>'
+*  $ docker run it -d -p '[HOST PORT]:[DOCKER PORT] [docker-image-name]'
 
 Example
 * $ docker build -f Dockerfile -t espark-swagger-api-docs .
