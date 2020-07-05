@@ -198,3 +198,10 @@
 > .
 > .
 > .
+
+* ## espark-swagger-api-docs
+> descripition: swagger web project for rest api documentations
+> this project contains yaml based swagger implemenations 
+> this project can run on node http-server and its has express implemenation
+> docker image can be created and executed as docker continer also.
+
