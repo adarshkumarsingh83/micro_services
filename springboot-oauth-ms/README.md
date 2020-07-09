@@ -104,69 +104,69 @@ NOTE :
 
 
 ### Start the Eureka Server ###
-$ cd springboot-eureka-server
-$ mvn clean package 
-$ mvn spring-boot:run 
-http://localhost:8761
+* $ cd springboot-eureka-server
+* $ mvn clean package 
+* $ mvn spring-boot:run 
+* http://localhost:8761
 
 
 ###  Start the config server ####
-$ cd springboot-config-server
-$ mvn clean package 
-$ mvn spring-boot:run 
+* $ cd springboot-config-server
+* $ mvn clean package 
+* $ mvn spring-boot:run 
 
 
 #### Start the Auth server ###
-$ cd springboot-oauth2-auth-server
-$ mvn clean package 
-$ mvn spring-boot:run 
+* $ cd springboot-oauth2-auth-server
+* $ mvn clean package 
+* $ mvn spring-boot:run 
 
 
 ### Start the api gateway  
-$ cd springboot-api-gateway 
-$ mvn clean package 
-$ mvn spring-boot:run 
+* $ cd springboot-api-gateway 
+* $ mvn clean package 
+* $ mvn spring-boot:run 
 
 
 ### Start the employee Service ###
-$ cd employee-service
-$ mvn clean package 
-$ mvn spring-boot:run 
+* $ cd employee-service
+* $ mvn clean package 
+* $ mvn spring-boot:run 
 
 #### Start the address service #######
-$ cd address-service
-$ mvn clean package 
-$ mvn spring-boot:run 
+* $ cd address-service
+* $ mvn clean package 
+* $ mvn spring-boot:run 
 
 ### Start the api service #######
-$ cd api-service
-$ mvn clean package 
-$ mvn spring-boot:run 
+* $ cd api-service
+* $ mvn clean package 
+* $ mvn spring-boot:run 
 
-$ curl --location --request POST 'localhost:8080/oauth/token' \
+* $ curl --location --request POST 'localhost:8080/oauth/token' \
 --header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ=' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=password' \
 --data-urlencode 'username=adarsh' \
 --data-urlencode 'password=adarsh'
 
-$ curl --location --request GET 'localhost:8080/oauth/check_token?token=<TOKEN-VALUE>' \
+* $ curl --location --request GET 'localhost:8080/oauth/check_token?token=<TOKEN-VALUE>' \
 --header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ='
 
-$ curl --location --request POST 'localhost:8080/oauth/token' \
+* $ curl --location --request POST 'localhost:8080/oauth/token' \
   --header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ=' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
   --data-urlencode 'grant_type=password' \
   --data-urlencode 'username=radha' \
   --data-urlencode 'password=radha'
 
- $ curl --location --request GET 'localhost:8080/oauth/check_token?token=<TOKEN-VALUE>' \
+* $ curl --location --request GET 'localhost:8080/oauth/check_token?token=<TOKEN-VALUE>' \
    --header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ='
    
    
-$ curl -v http://localhost:8080/api/message  -H "Authorization: Bearer <Token Value >"  
+* $ curl -v http://localhost:8080/api/message  -H "Authorization: Bearer <Token Value >"  
    
-$ curl -v  http://localhost:8080/api/message -H "Authorization: Bearer <Token Value >"
+* $ curl -v  http://localhost:8080/api/message -H "Authorization: Bearer <Token Value >"
 ```Response
 {
   "ESPARK-ADDRESS-SERVICE": "Hello from Espark Address ServiceESPARK-HEADER-FROM-API-SERVICE",
@@ -174,7 +174,7 @@ $ curl -v  http://localhost:8080/api/message -H "Authorization: Bearer <Token Va
   "ESPARK-API-SERVICES": "Hello from Espark Api Service ESPARK-HEADER-FOR-API-SERVICE"
 }
 ```
-$ curl -v  http://localhost:8080/api/address/1 -H "Authorization: Bearer <Token Value >"
+* $ curl -v  http://localhost:8080/api/address/1 -H "Authorization: Bearer <Token Value >"
 ```Response
 {
   "id": 1,
@@ -188,7 +188,7 @@ $ curl -v  http://localhost:8080/api/address/1 -H "Authorization: Bearer <Token 
 }
 ```
 
-$ curl -v  http://localhost:8080/api/employee/1 -H "Authorization: Bearer <Token Value >"
+* $ curl -v  http://localhost:8080/api/employee/1 -H "Authorization: Bearer <Token Value >"
 ```Response
 {
   "id": 1,
@@ -201,7 +201,7 @@ $ curl -v  http://localhost:8080/api/employee/1 -H "Authorization: Bearer <Token
   }
 }
 ```
-$curl -v  http://localhost:8080/api/details/1 -H "Authorization: Bearer <Token Value >"
+* $ curl -v  http://localhost:8080/api/details/1 -H "Authorization: Bearer <Token Value >"
 ```Response
 {
   "id": 1,
@@ -221,7 +221,7 @@ $curl -v  http://localhost:8080/api/details/1 -H "Authorization: Bearer <Token V
   }
 }
 ```
-$ curl -v  http://localhost:8080/api/details -H "Authorization: Bearer <Token Value >"
+* $ curl -v  http://localhost:8080/api/details -H "Authorization: Bearer <Token Value >"
 ```Response
 [
   {
