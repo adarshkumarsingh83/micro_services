@@ -1,0 +1,202 @@
+# SPRINGBOOT OAUTH JWT MICROSERVICE ARCHITECTURE PROJECT 
+* 1.eureka, api gateway, config server, done
+* 2.jwt Oauth2 server  done 
+* 3.resource server with (api aggregator,person,address) done
+* 4.hystrix and hystrix dashboard tbc 
+* 5.spring boot admin tbd
+* 6.sluth and zipkin  done 
+
+
+### generate the jwt.jsk file with below steps
+
+========================================================================================================================
+### Generate key store file inside the springboot-oauth2-auth-server resource dir 
+  this will generate jwt.jks which contains public and private keys
+ $ cd springboot-oauth2-auth-server/src/main/resources/
+ $ keytool -genkeypair -alias jwt -keyalg RSA --keypass password -keystore jwt.jks --storepass password
+
+### Moving to PKCS12
+  this cmd will prompt for key-store password
+  after execution this cmd will generate jwt.jks copy that file to resource dir of application
+ $ keytool -importkeystore -srckeystore jwt.jks -destkeystore jwt.jks -deststoretype pkcs12
+
+### export the public key
+  after execution of this cmd copy the public key from save for resource server config
+  ---- BEGIN PUBLIC KEY ------
+  			XXX
+  			XXX
+  ----- END PUBLIC KEY -------
+ $ keytool -list -rfc --keystore jwt.jks | openssl x509 -inform pem -pubkey
+
+NOTE :
+  for help get check the file keystore-execution.txt
+========================================================================================================================
+
+
+### Start the Eureka Server ###
+$ cd springboot-eureka-server
+$ mvn clean package 
+$ mvn spring-boot:run 
+http://localhost:8761
+
+
+###  Start the config server ####
+$ cd springboot-config-server
+$ mvn clean package 
+$ mvn spring-boot:run 
+
+
+#### Start the Auth server ###
+$ cd springboot-oauth2-auth-server
+$ mvn clean package 
+$ mvn spring-boot:run 
+
+
+### Start the api gateway  
+$ cd springboot-api-gateway 
+$ mvn clean package 
+$ mvn spring-boot:run 
+
+
+### Start the employee Service ###
+$ cd employee-service
+$ mvn clean package 
+$ mvn spring-boot:run 
+
+#### Start the address service #######
+$ cd address-service
+$ mvn clean package 
+$ mvn spring-boot:run 
+
+### Start the api service #######
+$ cd api-service
+$ mvn clean package 
+$ mvn spring-boot:run 
+
+$ curl --location --request POST 'localhost:8080/oauth/token' \
+--header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ=' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'grant_type=password' \
+--data-urlencode 'username=adarsh' \
+--data-urlencode 'password=adarsh'
+
+$ curl --location --request GET 'localhost:8080/oauth/check_token?token=<TOKEN-VALUE>' \
+--header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ='
+
+$ curl --location --request POST 'localhost:8080/oauth/token' \
+  --header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ=' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'grant_type=password' \
+  --data-urlencode 'username=radha' \
+  --data-urlencode 'password=radha'
+
+ $ curl --location --request GET 'localhost:8080/oauth/check_token?token=<TOKEN-VALUE>' \
+   --header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ='
+   
+   
+$ curl -v http://localhost:8080/api/message  -H "Authorization: Bearer <Token Value >"  
+   
+$ curl -v  http://localhost:8080/api/message -H "Authorization: Bearer <Token Value >"
+{
+  "ESPARK-ADDRESS-SERVICE": "Hello from Espark Address ServiceESPARK-HEADER-FROM-API-SERVICE",
+  "ESPARK-EMPLOYEE-SERVICE": "Hello from Espark Employee Service ESPARK-HEADER-FROM-API-SERVICE",
+  "ESPARK-API-SERVICES": "Hello from Espark Api Service ESPARK-HEADER-FOR-API-SERVICE"
+}
+
+$ curl -v  http://localhost:8080/api/address/1 -H "Authorization: Bearer <Token Value >"
+{
+  "id": 1,
+  "address": {
+    "id": 1,
+    "streetName": "jpb street",
+    "cityName": "jbp",
+    "country": "india",
+    "type": "ADDRESS"
+  }
+}
+
+$ curl -v  http://localhost:8080/api/employee/1 -H "Authorization: Bearer <Token Value >"
+{
+  "id": 1,
+  "employee": {
+    "id": 1,
+    "firstName": "adarsh",
+    "lastName": "kumar",
+    "career": "It",
+    "type": "EMPLOYEE"
+  }
+}
+
+$curl -v  http://localhost:8080/api/details/1 -H "Authorization: Bearer <Token Value >"
+{
+  "id": 1,
+  "address": {
+    "id": 1,
+    "streetName": "jpb street",
+    "cityName": "jbp",
+    "country": "india",
+    "type": "ADDRESS"
+  },
+  "employee": {
+    "id": 1,
+    "firstName": "adarsh",
+    "lastName": "kumar",
+    "career": "It",
+    "type": "EMPLOYEE"
+  }
+}
+
+$ curl -v  http://localhost:8080/api/details -H "Authorization: Bearer <Token Value >"
+[
+  {
+    "id": 1,
+    "address": {
+      "id": 1,
+      "streetName": "jpb street",
+      "cityName": "jbp",
+      "country": "india",
+      "type": "ADDRESS"
+    },
+    "employee": {
+      "id": 1,
+      "firstName": "adarsh",
+      "lastName": "kumar",
+      "career": "It",
+      "type": "EMPLOYEE"
+    }
+  },
+  {
+    "id": 2,
+    "address": {
+      "id": 2,
+      "streetName": "hyd street",
+      "cityName": "hyd",
+      "country": "india",
+      "type": "ADDRESS"
+    },
+    "employee": {
+      "id": 2,
+      "firstName": "radha",
+      "lastName": "singh",
+      "career": "IT",
+      "type": "EMPLOYEE"
+    }
+  },
+  {
+    "id": 3,
+    "address": {
+      "id": 3,
+      "streetName": "delhi street",
+      "cityName": "delhi",
+      "country": "india",
+      "type": "ADDRESS"
+    },
+    "employee": {
+      "id": 3,
+      "firstName": "amit",
+      "lastName": "kumar",
+      "career": "Finance",
+      "type": "EMPLOYEE"
+    }
+  }
+]
