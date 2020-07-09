@@ -97,13 +97,15 @@ $ curl --location --request POST 'localhost:8080/oauth/token' \
 $ curl -v http://localhost:8080/api/message  -H "Authorization: Bearer <Token Value >"  
    
 $ curl -v  http://localhost:8080/api/message -H "Authorization: Bearer <Token Value >"
+```Response
 {
   "ESPARK-ADDRESS-SERVICE": "Hello from Espark Address ServiceESPARK-HEADER-FROM-API-SERVICE",
   "ESPARK-EMPLOYEE-SERVICE": "Hello from Espark Employee Service ESPARK-HEADER-FROM-API-SERVICE",
   "ESPARK-API-SERVICES": "Hello from Espark Api Service ESPARK-HEADER-FOR-API-SERVICE"
 }
-
+```
 $ curl -v  http://localhost:8080/api/address/1 -H "Authorization: Bearer <Token Value >"
+```Response
 {
   "id": 1,
   "address": {
@@ -114,8 +116,10 @@ $ curl -v  http://localhost:8080/api/address/1 -H "Authorization: Bearer <Token 
     "type": "ADDRESS"
   }
 }
+```
 
 $ curl -v  http://localhost:8080/api/employee/1 -H "Authorization: Bearer <Token Value >"
+```Response
 {
   "id": 1,
   "employee": {
@@ -126,8 +130,9 @@ $ curl -v  http://localhost:8080/api/employee/1 -H "Authorization: Bearer <Token
     "type": "EMPLOYEE"
   }
 }
-
+```
 $curl -v  http://localhost:8080/api/details/1 -H "Authorization: Bearer <Token Value >"
+```Response
 {
   "id": 1,
   "address": {
@@ -145,8 +150,9 @@ $curl -v  http://localhost:8080/api/details/1 -H "Authorization: Bearer <Token V
     "type": "EMPLOYEE"
   }
 }
-
+```
 $ curl -v  http://localhost:8080/api/details -H "Authorization: Bearer <Token Value >"
+```Response
 [
   {
     "id": 1,
@@ -200,3 +206,4 @@ $ curl -v  http://localhost:8080/api/details -H "Authorization: Bearer <Token Va
     }
   }
 ]
+```
