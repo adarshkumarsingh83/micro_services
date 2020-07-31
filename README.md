@@ -1,207 +1,247 @@
 # ** SPRING BOOT MICROSERVICES EXAMPLES **
 
-* ## DOCUMENTS					
-> descripition:
-> . Contains some step by step helping documen for 
-> . configurations and other things 
+* ## [DOCUMENTS](https://github.com/adarshkumarsingh83/micro_services/tree/master/DOCUMENTS)					
+> descripition: \
+> . Contains some step by step helping documen for \
+> . configurations and other things  \
 > .	also contains the intellj helps 
 
-* ## springboot-admin	
+----
+## SWAGGER DOCUMENTATION 
+----
+
+* ## [espark-swagger-api-docs](https://github.com/adarshkumarsingh83/micro_services/tree/master/espark-swagger-api-docs)	
+> descripition:  \
+> swagger web project for rest api documentations \
+> this project contains yaml based swagger implemenations  \
+> this project can run on node http-server and its has express implemenation \
+> docker image can be created and executed as docker continer also.
+
+----
+## BOOT ADMIN
+----
+
+* ## [springboot-admin](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-admin)	
 > descripition:
 > .
 > .
 > .		
 
-* ## springboot-config-server-vault
+----
+## CONFIG SERVER 
+----
+
+* ## [springboot-config-server-vault](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-config-server-vault)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-espark-ms				
+* ## [springboot-cloud-config-db](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-cloud-config-db)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-consul-ms
+* ## [springboot-cloud-config-git](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-cloud-config-git)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-hystrix				
+* ## [springboot-confiserver-client](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-confiserver-client)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-hystix-dashboard		
+* ## [springboot-config-server-encryption](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-config-server-encryption)	
 > descripition:
 > .
 > .
 > .
 
-* ## spring-cloud-ms					
+----
+## API GATEWAY SERVER 
+----
+
+* ## [springboot-cloud-gateway](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-cloud-gateway)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-micrometer-prometheus-grafana
+* ## [springboot-cloud-gateway-ms](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-cloud-gateway-ms)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-ms-aggregator			
+----
+## REGISTRY SERVER 
+----
+
+* ## [springboot-consul-ms](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-consul-ms)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-cloud-config-db			
+* ## [springboot-zookeeper-ms](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-zookeeper-ms)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-ms-cluster
+
+
+
+
+* ## [springboot-espark-ms](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-espark-ms)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-oauth-ms			
+* ## [springboot-hystrix](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-hystrix)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-cloud-config-git			
+* ## [springboot-hystix-dashboard](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-hystix-dashboard)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-netflix-cloud-ms
+* ## [spring-cloud-ms](https://github.com/adarshkumarsingh83/micro_services/tree/master/spring-cloud-ms)	
+> descripition:
+> .
+> .
+> .
+
+* ## [springboot-micrometer-prometheus-grafana](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-micrometer-prometheus-grafana)	
+> descripition:
+> .
+> .
+> .
+
+* ## [springboot-ms-aggregator](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-ms-aggregator)	
+> descripition:
+> .
+> .
+> .
+
+
+* ## [springboot-ms-cluster](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-ms-cluster)	
+> descripition:
+> .
+> .
+> .
+
+* ## [springboot-oauth-ms](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-oauth-ms)	
+> descripition:
+> .
+> .
+> .
+
+
+
+* ## [springboot-netflix-cloud-ms](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-netflix-cloud-ms)	
 > descripition:
 > spring boot neflix cloud micro services sample consist of the 
 > zuul api gateway 
 > eureka as registry server 
 > and sample api services 
 
-* ## springboot-netflixoss-ms				
+* ## [springboot-netflixoss-ms](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-netflixoss-ms)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-cloud-gateway			
+
+
+* ## [springboot-netflix-ms-docker-compose](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-netflix-ms-docker-compose)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-netflix-ms-docker-compose
+
+
+* ## [springboot-cloud-gateway-custom-filter](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-cloud-gateway-custom-filter)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-confiserver-client			
+* ## [springboot-netflix-oss](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-netflix-oss)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-cloud-gateway-custom-filter		
+
+
+* ## [springboot-zipkin-sleuth](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-zipkin-sleuth)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-netflix-oss
+* ## [springboot-haproxy](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-haproxy)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-cloud-gateway-ms			
+* ## [springboot-cloud-security-gateway-ms](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-cloud-security-gateway-ms)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-zipkin-sleuth
+
+
+* ## [springboot-hystrix-circuit-breaker](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-hystrix-circuit-breaker)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-haproxy				
+* ## [springboot-cloud-security-zuul-ms](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-cloud-security-zuul-ms)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-cloud-security-gateway-ms		
+* ## [springboot-zuul-oauth-server](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-zuul-oauth-server)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-zookeeper-ms
+* ## [kubernates-docker](https://github.com/adarshkumarsingh83/micro_services/tree/master/kubernates-docker)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-hystrix-circuit-breaker		
+* ## [springboot-cloud-webflux-ms](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-cloud-webflux-ms)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-cloud-security-zuul-ms		
+* ## [springboot-sluth-zipkin-tracing](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-sluth-zipkin-tracing)	
 > descripition:
 > .
 > .
 > .
 
-* ## springboot-zuul-oauth-server
-> descripition:
-> .
-> .
-> .
 
-* ## kubernates-docker				
-> descripition:
-> .
-> .
-> .
 
-* ## springboot-cloud-webflux-ms
-> descripition:
-> .
-> .
-> .
 
-* ## springboot-sluth-zipkin-tracing			
-> descripition:
-> .
-> .
-> .
-
-* ## springboot-config-server-encryption
-> descripition:
-> .
-> .
-> .
-
-* ## espark-swagger-api-docs
-> descripition: swagger web project for rest api documentations
-> this project contains yaml based swagger implemenations 
-> this project can run on node http-server and its has express implemenation
-> docker image can be created and executed as docker continer also.
 
