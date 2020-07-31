@@ -77,6 +77,12 @@
 > .
 > .
 
+* ## [springboot-cloud-gateway-custom-filter](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-cloud-gateway-custom-filter)	
+> descripition:
+> .
+> .
+> .
+
 ----
 ## REGISTRY SERVER 
 ----
@@ -173,11 +179,7 @@
 
 
 
-* ## [springboot-cloud-gateway-custom-filter](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-cloud-gateway-custom-filter)	
-> descripition:
-> .
-> .
-> .
+
 
 * ## [springboot-netflix-oss](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-netflix-oss)	
 > descripition:
