@@ -9,7 +9,7 @@
 
 ### generate the jwt.jsk file with below steps
 
-========================================================================================================================
+================================================================================
 ### Generate key store file inside the springboot-oauth2-auth-server resource dir 
   this will generate jwt.jks which contains public and private keys
 *  $ cd springboot-oauth2-auth-server/src/main/resources/
@@ -100,7 +100,7 @@ bMZf3PhvwjM4pNaHd6vYu/lwfMM5ZtUMsw==
 
 NOTE :
   for help get check the file keystore-execution.txt
-========================================================================================================================
+================================================================================
 
 
 ### Start the Eureka Server ###
@@ -150,7 +150,7 @@ NOTE :
 --data-urlencode 'username=adarsh' \
 --data-urlencode 'password=adarsh'
 
-* $ curl --location --request GET 'localhost:8080/oauth/check_token?token=<TOKEN-VALUE>' \
+* $ curl --location --request GET 'localhost:8080/oauth/check_token?token=&lt; Token-Value &gt;' \
 --header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ='
 
 * $ curl --location --request POST 'localhost:8080/oauth/token' \
@@ -160,13 +160,13 @@ NOTE :
   --data-urlencode 'username=radha' \
   --data-urlencode 'password=radha'
 
-* $ curl --location --request GET 'localhost:8080/oauth/check_token?token=<TOKEN-VALUE>' \
+* $ curl --location --request GET 'localhost:8080/oauth/check_token?token=&lt; Token-Value &gt;' \
    --header 'Authorization: Basic ZXNwYXJrLWFwcDpzZWNyZXQ='
    
    
-* $ curl -v http://localhost:8080/api/message  -H "Authorization: Bearer <Token Value >"  
+* $ curl -v http://localhost:8080/api/message  -H "Authorization: Bearer &lt; Token-Value &gt;"
    
-* $ curl -v  http://localhost:8080/api/message -H "Authorization: Bearer <Token Value >"
+* $ curl -v  http://localhost:8080/api/message -H "Authorization: Bearer &lt; Token-Value &gt;"
 ```Response
 {
   "ESPARK-ADDRESS-SERVICE": "Hello from Espark Address ServiceESPARK-HEADER-FROM-API-SERVICE",
@@ -174,7 +174,7 @@ NOTE :
   "ESPARK-API-SERVICES": "Hello from Espark Api Service ESPARK-HEADER-FOR-API-SERVICE"
 }
 ```
-* $ curl -v  http://localhost:8080/api/address/1 -H "Authorization: Bearer <Token Value >"
+* $ curl -v  http://localhost:8080/api/address/1 -H "Authorization: Bearer &lt; Token-Value &gt;"
 ```Response
 {
   "id": 1,
@@ -188,7 +188,7 @@ NOTE :
 }
 ```
 
-* $ curl -v  http://localhost:8080/api/employee/1 -H "Authorization: Bearer <Token Value >"
+* $ curl -v  http://localhost:8080/api/employee/1 -H "Authorization: Bearer &lt; Token-Value &gt;"
 ```Response
 {
   "id": 1,
@@ -201,7 +201,7 @@ NOTE :
   }
 }
 ```
-* $ curl -v  http://localhost:8080/api/details/1 -H "Authorization: Bearer <Token Value >"
+* $ curl -v  http://localhost:8080/api/details/1 -H "Authorization: Bearer &lt; Token-Value &gt;"
 ```Response
 {
   "id": 1,
@@ -221,7 +221,7 @@ NOTE :
   }
 }
 ```
-* $ curl -v  http://localhost:8080/api/details -H "Authorization: Bearer <Token Value >"
+* $ curl -v  http://localhost:8080/api/details -H "Authorization: Bearer &lt; Token-Value &gt;"
 ```Response
 [
   {

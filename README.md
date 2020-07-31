@@ -105,9 +105,11 @@
 
 * ## [springboot-hystrix](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-hystrix)	
 > descripition:
-> .
-> .
-> .
+> . ms project based on spring netflix cloud it has spring cloud api gateway as gateway 
+> . its has eureka as the registry server, spring cloud config server, spring cloud based 
+> . ms services for address employee and it as api gateway services for data aggregation 
+> . which used rest template for inter micro services communication and its has spring security  
+> . outh2 based auth service with jwt token based implementation for securing the ms.
 
 * ## [springboot-hystix-dashboard](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-hystix-dashboard)	
 > descripition:
