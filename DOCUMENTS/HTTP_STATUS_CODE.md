@@ -1,3 +1,6 @@
+# HTTP STATUS CODES LIST 
+
+````
 100 Continue
 101 Switching Protocols
 103 Early Hints
@@ -52,3 +55,4 @@
 508 Loop Detected
 510 Not Extended
 511 Network Authentication Required
+````

@@ -1,8 +1,11 @@
-==========================================================================================
-1.Eureka Server 
-==========================================================================================	
-a.	pom.xml file 
+----
 
+#  1.Eureka Server 
+
+----
+* a.pom.xml file 
+
+````	
 <properties>
 	<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 </properties>
@@ -23,13 +26,17 @@ a.	pom.xml file
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 </dependency>
-	
-b.ApplicationMain.java
 
- import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+````
+* b.ApplicationMain.java
+
+````
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 @EnableEurekaServer	
+````
 
-c. application.yml 
+* c. application.yml
+```` 
 spring:
   application:
     name: discovery-service
@@ -41,18 +48,24 @@ eureka:
     register-with-eureka: false
 server:
   port: 8761
+```` 
 
-d. application.properties
+* d. application.properties
+
+````
 logging.level.com.netflix.eureka=OFF
 logging.level.com.netflix.discovery=OFF
 logging.level.org.springframework=INFO
 logging.level.org.springframework.cloud=DEBUG
 
-==========================================================================================
-2.For Eureka client 
-==========================================================================================
-a. pom.xml 
+````
+----
 
+#  2.For Eureka client 
+
+----
+* a. pom.xml 
+````
 <properties>
 	<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 </properties>
@@ -78,29 +91,36 @@ a. pom.xml
 	<artifactId>spring-boot-starter-actuator</artifactId>
 </dependency>
 		
-b.ApplicationMain.java
+````
+* b.ApplicationMain.java
+````
   import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
   @EnableEurekaClient		
+````
   
-c. application.yml 
-
+* c. application.yml 
+````
  eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
       
-d. application.properties 
-
+````
+* d. application.properties 
+````
  ## Configuring /info endpoint details 
 info.app.name=SPRING NAME
 info.app.description=spring boot cloud gateway
 info.app.version=1.0.0      
+````
            
-==========================================================================================
-3.Zuul Server 
-==========================================================================================
-a.pom.xml
+----
 
+#  3.Zuul Server
+ 
+----
+* a.pom.xml
+````
 <properties>
 	<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 </properties>
@@ -121,14 +141,16 @@ a.pom.xml
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 </dependency>		
+````
 
-b. Application.java 
-
+* b. Application.java 
+````
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @EnableZuulProxy
+````
 
-c. application.yml 
- 
+* c. application.yml 
+```` 
  zuul:
   #Service will be mapped under the /api URI
   #prefix: /api
@@ -152,11 +174,15 @@ c. application.yml
     static:
       path: /static/**
 
-==========================================================================================
-4.Boot Admin Servver
-==========================================================================================
-a. pom.xml
+```` 
 
+----
+
+# 4.Boot Admin Server
+
+----
+* a. pom.xml
+````
 <properties>
 	<spring-boot-admin.version>2.2.1</spring-boot-admin.version>
 </properties>
@@ -182,26 +208,34 @@ a. pom.xml
 	<artifactId>spring-boot-admin-starter-server</artifactId>
 </dependency>
 
-b. ApplicationMain.java 
-
+````
+* b. ApplicationMain.java 
+````
 import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 	@EnableAdminServer
 	@EnableAutoConfiguration
+````
 
-c. application.yml 
-
+* c. application.yml 
+````
 spring:
   application:
     name: spring-boot-admin
 server:
   port: 8181 
 
-==========================================================================================
-4.Boot Admin Client 
-==========================================================================================
-a. pom.xml 
+````
 
+----
+
+#  5.Boot Admin Client
+ 
+----
+
+* a. pom.xml 
+
+````
 <properties>
 	<spring-boot-admin.version>2.2.1</spring-boot-admin.version>
 </properties>
@@ -222,22 +256,30 @@ a. pom.xml
 	<groupId>de.codecentric</groupId>
 	<artifactId>spring-boot-admin-starter-client</artifactId>
 </dependency>
+````
 
-b. ApplicationMain.java
+*  b. ApplicationMain.java
+````
 import de.codecentric.boot.admin.config.EnableAdminServer;
 @EnableAdminServer
+````
 
-c. application.properties 
+* c. application.properties 
 
-#SPRING BOOT ADMIN
+````
+# SPRING BOOT ADMIN
 spring.boot.admin.client.url=http://localhost:8181
 management.endpoints.web.exposure.include=*
 
-==========================================================================================
-5.Configuration Server 
-==========================================================================================
-a. pom.xml 
+````
 
+----
+
+#  6.Configuration Server
+ 
+----
+* a. pom.xml 
+````
 <properties>
 	<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 </properties>
@@ -259,13 +301,15 @@ a. pom.xml
 	<artifactId>spring-cloud-config-server</artifactId>
 </dependency>
 
-b. ApplicationMain.java 
-
+````
+* b. ApplicationMain.java 
+````
 import org.springframework.cloud.config.server.EnableConfigServer;
 	@EnableConfigServer
 
-c. application.yml 
-
+````
+* c. application.yml 
+````
 spring:
   application:
     name: configuration-server
@@ -280,19 +324,24 @@ server:
   port: 8888       
   
 or for local configuration not the git then use below one 
-d. application.properties
-
+````
+* d. application.properties
+````
 server.port=8888 
 spring.profiles.active=native
 #common-config is the location inside the resource dir of the configuration server 
 spring.cloud.config.server.native.search-locations=classpath:/common-config     
+````
 
           		
-==========================================================================================
-6.Configuration Server Client 
-==========================================================================================
-a. pom.xml 
+----
 
+
+#   7.Configuration Server Client
+ 
+----
+* a. pom.xml 
+````
 <properties>
 	<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 </properties>
@@ -323,16 +372,22 @@ a. pom.xml
 	<artifactId>spring-cloud-starter-config</artifactId>
 </dependency>
 
-b.application.properties 
-
+````
+* b.application.properties 
+````
 #SPRING CONFIGURATION SERVER URL
 spring.cloud.config.uri=http://localhost:8888
 		
-==========================================================================================
-7. Sluth Configuration 
-==========================================================================================
-a. pom.xml
+````
+----
 
+
+#  8. Sluth Configuration
+ 
+
+----
+* a. pom.xml
+````
 <properties>
 	<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 </properties>
@@ -355,8 +410,9 @@ a. pom.xml
 	<artifactId>spring-cloud-starter-sleuth</artifactId>
 </dependency>
 		
-b. application.properties 
-
+````
+* b. application.properties 
+````
 #SLUTH SAMPLER CONFIGURATION FOR LOG TRACING
 spring.sleuth.sampler.probability=1		
 
@@ -365,11 +421,17 @@ logging.level.org.springframework.cloud=DEBUG
 logging.level.org.springframework.web=INFO
 logging.level.org.springframework=INFO
 
-==========================================================================================
-8.Zipkin Server 
-==========================================================================================
-a. pom.xml 
+````
+----
 
+
+#  9.Zipkin Server
+
+ 
+----
+
+* a. pom.xml 
+````
 <parent>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-parent</artifactId>
@@ -393,19 +455,24 @@ a. pom.xml
 	<scope>runtime</scope>
 </dependency>
 	
-b. application.properties 
-
+````
+* b. application.properties 
+````
 spring.application.name=zipkin-server
 server.port=9411
 spring.main.allow-bean-definition-overriding=true
 #to Suppress exception related to the promothus
 management.metrics.web.server.auto-time-requests=false
 	
-==========================================================================================
-9.Zipkin Server client 
-==========================================================================================
-a. pom.xml 
+````
+----
 
+#   10.Zipkin Server client
+
+ 
+----
+* a. pom.xml 
+````
 <properties>
 	<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 </properties>
@@ -435,9 +502,10 @@ a. pom.xml
 	<artifactId>spring-boot-devtools</artifactId>
 	<scope>runtime</scope>
 </dependency>
+````
 
-b. application.properties 
-
+* b. application.properties 
+````
 #ZIPKIN SERVER URL
 spring.zipkin.base-url=http://localhost:9411/
 
@@ -445,11 +513,16 @@ spring.zipkin.base-url=http://localhost:9411/
 logging.level.org.springframework.cloud=DEBUG
 logging.level.org.springframework.web=INFO
 logging.level.org.springframework=INFO
-==========================================================================================
-10.Hystrix 
-==========================================================================================
-a. pom.xml
+````
+----
 
+
+#  11.Hystrix
+
+ 
+----
+* a. pom.xml
+````
 <properties>
 	<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 </properties>
@@ -471,8 +544,9 @@ a. pom.xml
 	<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 </dependency>
 		
-b. Servvice class on the method wich is call some other external service 
-
+````
+* b. Servvice class on the method wich is call some other external service 
+````
   import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 	@HystrixCommand(fallbackMethod = "fallbackMethod")
@@ -486,11 +560,17 @@ b. Servvice class on the method wich is call some other external service
 	  return valueSameASConfiguredMethod;
 	}
 	
-==========================================================================================	
-11.Hystix Dashboard Server
-==========================================================================================
-a. pom.xml 
+````
 
+----	
+
+
+#  12.Hystix Dashboard Server
+
+
+----	
+* a. pom.xml 
+````
 <properties>
 	<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 </properties>
@@ -516,21 +596,30 @@ a. pom.xml
 	<artifactId>spring-boot-starter-actuator</artifactId>
 </dependency>
 		
+````
 
-b. ApplicationMain.java
-
+* b. ApplicationMain.java
+````
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 	@EnableHystrixDashboard
+````
 
-c. dashboard Url
-
+* c. dashboard Url
+````
 http://localhost:port/hystrix	
+````
 
-==========================================================================================	
-12. Hystrix Dash Board client 
-==========================================================================================	
-a. pom.xml
-		
+----	
+
+
+#  13. Hystrix Dash Board client
+
+ 
+----	
+
+* a. pom.xml
+
+````		
 <properties>
     <spring-cloud.version>Hoxton.M3</spring-cloud.version>
 </properties>
@@ -569,14 +658,15 @@ a. pom.xml
 		</dependency>
 	</dependencies>
 </dependencyManagement>
-
-b. ApplicationMain.java 
-
+````
+* b. ApplicationMain.java 
+````
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
   @EnableCircuitBreaker
+````
   
-  
-c. Service.java 
+* c. Service.java
+```` 
     Note: always call the method from different class not from same class other wise 
     hystix circuit will not work 
 
@@ -589,20 +679,29 @@ c. Service.java
     
     }  
 
-d. application.properties
-   
+```` 
+* d. application.properties
+  ```` 
    management.endpoints.web.exposure.include=* 
+  ```` 
 
-e. open the hystrix circuit in flow many times then collect the stream 
-of hystrix by calling the caller application then pass this url to the 
-hystrix dashboard for more details view 
+* e. open the hystrix circuit in flow many times then collect the stream 
+  of hystrix by calling the caller application then pass this url to the 
+  hystrix dashboard for more details view 
 
- http://localhost:8080/actuator/hystrix.stream
-==========================================================================================	
-13.Spring Cloud Api Gateway 
-==========================================================================================	
-a. pom.xml 
-	
+*  http://localhost:8080/actuator/hystrix.stream
+
+
+----
+
+
+#  14.Spring Cloud Api Gateway
+
+ 
+----
+* a. pom.xml 
+
+````	
 <properties>
 	<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 </properties>
@@ -624,8 +723,10 @@ a. pom.xml
 	</dependencies>
 </dependencyManagement>
 
-b. ApiGatewayConfig.java
+````
 
+* b. ApiGatewayConfig.java
+````
 ublic class ApiGatewayConfig {
 
 
@@ -647,10 +748,11 @@ ublic class ApiGatewayConfig {
     }
 }
 
-or 
+````
+* or 
 
-c. application.yml 
-
+* c. application.yml 
+````
 spring:
   cloud:
     gateway:
@@ -664,6 +766,6 @@ spring:
         ...............
 
 
-==========================================================================================	
+````
 
 	
