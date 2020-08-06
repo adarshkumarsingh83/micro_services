@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: springboot-admin-client
+  security:
+    user:
+      name: client
+      password: client
+      roles: admin
+
+server:
+  port: 8081
+
+logging:
+  level:
+    root: DEBUG
+
+info:
+  app:
+    name:  springboot-admin-client
+    description:  springboot-admin-client
+    version: 1.0.0
+

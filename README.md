@@ -27,6 +27,13 @@
 > .
 > .		
 
+
+* ## [springboot-admin-and-client](https://github.com/adarshkumarsingh83/micro_services/tree/master/springboot-admin-and-client)	
+> descripition: \
+> spring boot admin serer & client application \
+> where spring security is enabled on the client & server applicaton \
+> spring boot admin client register itself to the server 
+
 ----
 ## CONFIG SERVER 
 ----

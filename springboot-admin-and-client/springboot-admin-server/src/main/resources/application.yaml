@@ -1,0 +1,17 @@
+
+spring:
+  application:
+    name: springboot-admin-server
+  security:
+    user:
+      name: admin
+      password: admin
+      roles: admin
+
+server:
+  port: 8181
+
+logging:
+  level:
+    root: DEBUG
+
