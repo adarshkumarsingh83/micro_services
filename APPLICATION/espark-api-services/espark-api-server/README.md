@@ -1,46 +1,46 @@
-#Code Building
-###To build the code 
-mvn clean package
+# Code Building
+### To build the code 
+* mvn clean package
 
-###PROFILE ARGUMENT IN IDE AS PROGRAM ARGUS IN INTELLJ /ECLIPSE
+### PROFILE ARGUMENT IN IDE AS PROGRAM ARGUS IN INTELLJ /ECLIPSE
 * --spring.profiles.active=dev
 
-#Code Execution 
-###To run via cmd line
-$ mvn spring-boot:run -Dspring-boot.run.profiles=dev
-$ mvn spring-boot:run -Dspring-boot.run.profiles=prod
+# Code Execution 
+### To run via cmd line
+* $ mvn spring-boot:run -Dspring-boot.run.profiles=dev
+* $ mvn spring-boot:run -Dspring-boot.run.profiles=prod
 
-###To run via jar file
-$ java -jar -Dspring.profiles.active=dev target/espark-api-server.jar
-$ java -jar -Dspring.profiles.active=prod target/espark-api-server.jar
+### To run via jar file
+* $ java -jar -Dspring.profiles.active=dev target/espark-api-server.jar
+* $ java -jar -Dspring.profiles.active=prod target/espark-api-server.jar
 
-###To Build & Run via Docker
-$ docker build -f Dockerfile -t espark-api-server .
-$ docker run -e "SPRING_PROFILES_ACTIVE=dev" -p 8080:8080 -t espark-api-server
+### To Build & Run via Docker
+* $ docker build -f Dockerfile -t espark-api-server .
+* $ docker run -e "SPRING_PROFILES_ACTIVE=dev" -p 8080:8080 -t espark-api-server
 
-###To access swagger url
-http://localhost:8080/swagger-ui.html
+### To access swagger url
+* http://localhost:8080/swagger-ui.html
 
 
 
-#TEST SAMPLE SERVICES
+# TEST SAMPLE SERVICES
 
-###TO TEST LOGIN SERVICE
-$ curl -X POST http://localhost:8080/api/v1/auth/login -d '{"userName":"adarsh","userPwd":"adarsh"}' -H "Content-Type: application/json"
+### TO TEST LOGIN SERVICE
+* $ curl -X POST http://localhost:8080/api/v1/auth/login -d '{"userName":"adarsh","userPwd":"adarsh"}' -H "Content-Type: application/json"
 
-###TO FETCH THE LOG ENABLED SERVICE
-$ curl -X GET http://localhost:8080/api/v1/log/beans
+### TO FETCH THE LOG ENABLED SERVICE
+* $ curl -X GET http://localhost:8080/api/v1/log/beans
 
-###TO TEST CHANGE LOG LEVEL TO LOG ENABLED SERVICE
-$ curl -X PUT http://localhost:8080/api/v1/log/DEBUG  -d '["ValidationProcessor","AuthenticationServiceImpl"]' -H "Content-Type: application/json"
+### TO TEST CHANGE LOG LEVEL TO LOG ENABLED SERVICE
+* $ curl -X PUT http://localhost:8080/api/v1/log/DEBUG  -d '["ValidationProcessor","AuthenticationServiceImpl"]' -H "Content-Type: application/json"
 
-###TO TEST CHANGE LOG LEVEL TO DEBUG FOR ALL SERVICES 
-$ curl -X PUT http://localhost:8080/api/v1/log/all/DEBUG
+### TO TEST CHANGE LOG LEVEL TO DEBUG FOR ALL SERVICES 
+* $ curl -X PUT http://localhost:8080/api/v1/log/all/DEBUG
 
-###TO TEST THE PROPS FROM CONFIG SERVER
-$ curl -X GET http://localhost:8080/api/config/{prop-name}
+### TO TEST THE PROPS FROM CONFIG SERVER
+* $ curl -X GET http://localhost:8080/api/config/{prop-name}
 
-###Validation Annotations
+### Validation Annotations
 * @NotNull – validates that the annotated property value is not null
 * @AssertTrue – validates that the annotated property value is true
 * @Size – validates that the annotated property value has a size between the attributes min and max; can be applied to String, Collection, Map, and array properties
