@@ -1,0 +1,86 @@
+# @author Adarsh
+# @author $LastChangedBy: adarsh $
+# @version $Revision: 0001 $, $Date:: 15/6/20 10:12 AM#$
+
+
+server:
+  port: 8080
+
+#SWAGGER CONFIGURATIONS
+espark:
+  swagger:
+    directories:
+      -
+        directory: swagger-apis
+        fileName: api.yaml
+        locations:
+          - apiV1
+          - apiV2
+
+spring:
+  application:
+    name: espark-api-server
+
+---
+
+spring:
+  application:
+    name: espark-api-server
+  profiles:
+    - dev
+  cloud:
+    config:
+      label: latest # optional
+      uri: http://localhost:8888 # optional
+
+# URL CONFIGURATIONS
+#TODO CHANGE THE CONFIG AND URL BASED ON REQUIREMENT
+auth:
+  host: http://localhost:8080
+  context: /espark
+  urls:
+    login: /oauth2/login
+    registraions: /oauth2/registrations
+
+
+#LOGGER CONFIGURATIONS
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    com.espark.adarsh.api.server.exceptions: DEBUG
+    com.espark.adarsh.api.server.services: DEBUG
+    com.espark.adarsh.api.server.utils: DEBUG
+    com.espark.adarsh.api.server.web: DEBUG
+
+---
+
+spring:
+  application:
+    name: espark-api-server
+  profiles:
+    - prod
+  cloud: #TODO CHANGE THE CONFIG AND URL BASED ON REQUIREMENT
+    config:
+      label: latest
+      uri: http://${CONFIG_SERVER_HOST}:${CONFIG_SERVER_PORT}
+
+# URL CONFIGURATIONS
+#TODO CHANGE THE CONFIG AND URL BASED ON REQUIREMENT
+aem:
+  host: http://localhost:8080
+  context: /espark
+  urls:
+    login: /oauth2/login
+    registraions: /oauth2/registrations
+
+
+#LOGGER CONFIGURATIONS
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    com.espark.adarsh.api.server.exceptions: INFO
+    com.espark.adarsh.api.server.services: INFO
+    com.espark.adarsh.api.server.utils: INFO
+    com.espark.adarsh.api.server.web: INFO

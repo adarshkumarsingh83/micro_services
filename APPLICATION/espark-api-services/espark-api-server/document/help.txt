@@ -1,0 +1,85 @@
+---------------------------------------------------------------------------------------------
+#TO BUILD COMPLETE APPLICATION
+---------------------------------------------------------------------------------------------
+mvn clean package
+
+---------------------------------------------------------------------------------------------
+CONFIG SERVER
+---------------------------------------------------------------------------------------------
+#TO BUILD CONFIG SERVER
+$ mvn clean package
+
+#TO RUN ESPARK CONFIG SERVER VIA CMD LINE
+$ mvn spring-boot:run
+
+#TO RUN ESPARK CONFIG SERVER VIA JAR FILE
+$ java -jar target/espark-config-server.jar
+
+#TO BUILD & RUN ESPARK CONFIG SERVER VIA DOCKER
+$ docker build -f Dockerfile -t espark-config-server .
+$ docker run -e  -p 8080:8080 -t espark-config-server
+---------------------------------------------------------------------------------------------
+API SERVER
+---------------------------------------------------------------------------------------------
+#TO BUILD ESPARK API SERVER
+$ mvn clean package
+
+#PROFILE ARGUMENT IN IDE AS PROGRAM ARGUS IN INTELLJ /ECLIPSE
+--spring.profiles.active=dev
+
+#TO RUN ESPARK API SERVER VIA CMD LINE
+$ mvn spring-boot:run -Dspring-boot.run.profiles=dev
+$ mvn spring-boot:run -Dspring-boot.run.profiles=prod
+
+#TO RUN ESPARK API SERVER VIA JAR FILE
+$ java -jar -Dspring.profiles.active=dev target/espark-api-server.jar
+$ java -jar -Dspring.profiles.active=prod target/espark-api-server.jar
+
+#TO BUILD & RUN ESPARK API SERVER VIA DOCKER
+$ docker build -f Dockerfile -t espark-api-server .
+$ docker run -e "SPRING_PROFILES_ACTIVE=dev" -p 8080:8080 -t espark-api-server
+$ docker run -e "SPRING_PROFILES_ACTIVE=prod" -p 8080:8080 -t espark-api-server
+---------------------------------------------------------------------------------------------
+
+#to hit the swagger url
+http://localhost:8080/swagger-ui.html
+
+========================================================================================================================
+TEST SOME SAMPLE SERVICES
+--------------------------------------------------------------------------------------------------------------
+#TO TEST THE SAMPLE SERVICE
+$ curl -X POST http://localhost:8080/api/v1/auth/login -d '{"userName":"adarsh","userPwd":"adarsh"}' -H "Content-Type: application/json"
+
+#TO FETCH THE LOG ENABLED SERVICE
+$ curl -X GET http://localhost:8080/api/v1/log/beans
+
+#TO TEST CHANGE LOG LEVEL TO LOG ENABLED SERVICE
+$ curl -X PUT http://localhost:8080/api/v1/log/DEBUG  -d '["ValidationProcessor","AuthenticationServiceImpl"]' -H "Content-Type: application/json"
+
+$ curl -X PUT http://localhost:8080/api/v1/log/all/DEBUG
+
+#TO TEST THE PROPS FROM CONFIG SERVER
+$ curl -X GET http://localhost:8080/api/config/{prop-name}
+
+========================================================================================================================
+KEY POINT FOR THE DEVELOPMENT
+--------------------------------------------------------------------------------------------------------------
+
+1. update the swagger based on the end points in
+/espark-api-server/src/main/resources/static/swagger-apis/apiV1/api.yaml
+
+2.for adding resources url in
+a./espark-api-server/src/main/resources/application.yaml
+<domain-type>
+  host: http://xxxx
+  context: /xxxx
+  urls:
+    key1: /xxx/xxxx
+    key2: /xxx/xxxx
+
+b.create a config file in
+.../config/serviceurl/ implement the ServiceUrlConfiguration interface
+and provide the <domain-type> and other details
+
+3.create a request bean implementing the RequestBean interface and define the type of the bean based on requirement
+ same bean type will further used for defining validator for bean validation.

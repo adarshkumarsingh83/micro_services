@@ -1,0 +1,110 @@
+openapi: 3.0.1
+info:
+  title: Espark Service API
+  description: This service used to manage data aggregation
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: adarsh@espark.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: https://espark.com/v1
+tags:
+  - name: someTag
+    description: to manage the data aggregatrion related operations
+
+paths:
+  /some:
+    post:
+      tags:
+        - someTag
+      summary: to so some operation
+      operationId: someOperation
+      parameters:
+        - $ref: '#/components/parameters/someId'
+      requestBody:
+        description: to so some operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SomeObject'
+        required: true
+      responses:
+        200:
+          description: some operation sucesful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+        400:
+          description: Invalid request
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+        500:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+
+components:
+  parameters:
+    someId:
+      name: X-some-Id
+      in: header
+      schema:
+        type: string
+        maxLength: 4
+        pattern: '[a-z0-9]'
+      description: |
+        some operation
+
+  schemas:
+    SomeObject:
+      type: object
+      required:
+        - val1
+        - val2
+      properties:
+        val1:
+          type: string
+        val2:
+          type: string
+
+    GenericResponse:
+      type: object
+      required:
+        - success
+      properties:
+        success:
+          type: boolean
+        messages:
+          type: array
+          items:
+            type: object
+            required:
+              - message
+              - code
+            properties:
+              message:
+                type: string
+              code:
+                $ref: '#/components/schemas/ErrorCodes'
+    ErrorCodes:
+      type: string
+      description:
+        SOMECODE1   SOME DESCRIPTION  <br/>
+        SOMECODE2   SOME DESCRIPTION  <br/>
+      enum:
+        - SOMECODE1
+        - SOMECODE2
