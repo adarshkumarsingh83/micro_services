@@ -1,0 +1,20 @@
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      dataService:
+        enable-exponential-backoff: true
+        max-attempts: 5
+        retry-exceptions: org.springframework.web.client.ResourceAccessException
+        wait-duration: 2s
