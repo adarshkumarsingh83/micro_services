@@ -52,7 +52,8 @@
 
 ### To Hit the Api 
 * curl -X GET http://localhost:8080/name-list
-* normal execution without circuit breaker 
+* start the server and client application 
+* normal execution 
 ```
 {
   "msg": "response from remote server",
@@ -63,10 +64,11 @@
   ]
 } 
 ```
-* abnormal execution with circuit breaker 
+* hit more than 2 request within 5 sec 
+* abnormal execution with rate limiter 
 ```
- {
-  "msg": "response from local server",
+{
+  "msg": "response from local server :=> too many request rate limit apply ",
   "data": [
     "sonu",
     "radha",

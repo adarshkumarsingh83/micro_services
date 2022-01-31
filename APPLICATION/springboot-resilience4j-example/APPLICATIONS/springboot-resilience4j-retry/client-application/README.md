@@ -52,7 +52,8 @@
 
 ### To Hit the Api 
 * curl -X GET http://localhost:8080/name-list
-* normal execution without circuit breaker 
+* start the server and client application 
+* normal execution without retry hit 
 ```
 {
   "msg": "response from remote server",
@@ -63,10 +64,11 @@
   ]
 } 
 ```
+* stop the server application then try to hitting the service after some call it will send response from fallback 
 * abnormal execution with circuit breaker 
 ```
- {
-  "msg": "response from local server",
+{
+  "msg": "response from local server :=> remote server is down ",
   "data": [
     "sonu",
     "radha",

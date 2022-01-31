@@ -1,5 +1,6 @@
 package com.espark.adarsh.service;
 
+import io.github.resilience4j.ratelimiter.RequestNotPermitted;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
@@ -30,11 +31,11 @@ public class DataService {
     }
 
 
-    public HashMap<String, Object> localExecution(Exception e) {
+    public HashMap<String, Object> localExecution(RequestNotPermitted e) {
         log.info("label=data-server resilience4j fall back method execution ");
         return new HashMap<String, Object>() {
             {
-                put("msg", "response from local server");
+                put("msg", "response from local server :=> too many request rate limit apply ");
                 put("data", Arrays.asList(new String[]{"sonu", "radha", "monu"}));
             }
         };

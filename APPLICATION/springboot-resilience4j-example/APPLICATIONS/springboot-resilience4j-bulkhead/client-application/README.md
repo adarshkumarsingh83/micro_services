@@ -52,7 +52,8 @@
 
 ### To Hit the Api 
 * curl -X GET http://localhost:8080/name-list
-* normal execution without circuit breaker 
+* normal execution 
+* start server and  client application
 ```
 {
   "msg": "response from remote server",
@@ -63,7 +64,9 @@
   ]
 } 
 ```
-* abnormal execution with circuit breaker 
+* start server and  client application 
+* abnormal execution 
+* if number of concurrent call exceed 5 then fallback will trigger 
 ```
  {
   "msg": "response from local server",

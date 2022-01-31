@@ -11,7 +11,7 @@ management:
       show-details: always
 
 resilience4j:
-  circuitbreaker:
+  timelimiter:
     instances:
       dataService:
         cancel-running-future: false

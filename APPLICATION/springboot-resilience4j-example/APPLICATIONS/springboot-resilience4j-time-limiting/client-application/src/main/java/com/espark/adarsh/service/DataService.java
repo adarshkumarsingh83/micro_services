@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @Service
@@ -23,20 +24,20 @@ public class DataService {
     public static final String DATA_SERVICE = "dataService";
 
     @TimeLimiter(name = DATA_SERVICE, fallbackMethod = "localExecution")
-    public HashMap<String, Object> getNameList() {
+    public CompletableFuture<HashMap<String, Object>> getNameList() {
         log.info("label=data-server data fetch method execution ");
         URI uri = URI.create("http://localhost:9090/list");
-        return this.restTemplate.getForObject(uri, HashMap.class);
+        return CompletableFuture.supplyAsync(() -> this.restTemplate.getForObject(uri, HashMap.class));
     }
 
 
-    public HashMap<String, Object> localExecution(Exception e) {
+    public CompletableFuture<HashMap<String, Object>> localExecution(Exception e) {
         log.info("label=data-server resilience4j fall back method execution ");
-        return new HashMap<String, Object>() {
+        return CompletableFuture.supplyAsync(() -> new HashMap<String, Object>() {
             {
-                put("msg", "response from local server");
+                put("msg", "response from local server :=> remote is not responding on time ");
                 put("data", Arrays.asList(new String[]{"sonu", "radha", "monu"}));
             }
-        };
+        });
     }
 }

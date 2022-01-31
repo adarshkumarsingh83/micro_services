@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @RestController
@@ -17,7 +18,7 @@ public class ApplicationController {
     DataService dataService;
 
     @GetMapping("/name-list")
-    public HashMap<String,Object> getName(){
+    public CompletableFuture<HashMap<String, Object>> getName() {
         log.info("label=application-controller data fetch method execution ");
         return dataService.getNameList();
     }

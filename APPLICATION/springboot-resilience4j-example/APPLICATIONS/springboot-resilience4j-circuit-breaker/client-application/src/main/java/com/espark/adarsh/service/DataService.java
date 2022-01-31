@@ -31,10 +31,10 @@ public class DataService {
 
 
     public HashMap<String, Object> localExecution(Exception e) {
-        log.info("label=data-server resilience4j fall back method execution ");
+        log.info("label=data-server resilience4j fall back method execution   ");
         return new HashMap<String, Object>() {
             {
-                put("msg", "response from local server");
+                put("msg", "response from local server :=> remote server is down");
                 put("data", Arrays.asList(new String[]{"sonu", "radha", "monu"}));
             }
         };
