@@ -1,0 +1,36 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /api
+
+spring:
+  redis:
+    host: localhost
+    port: 6379
+  application:
+    name: springboot-redicache-ratelimiter
+  cloud:
+    gateway:
+      routes:
+        - id: employees
+          uri: http://localhost:8080/employees
+          predicates:
+            - Path=/employees
+          filters:
+            - name: RequestRateLimiter
+              args:
+                methods: GET
+                redis-rate-limiter.replenishRate: 20
+                redis-rate-limiter.burstCapacity: 40
+                redis-rate-limiter.requestedTokens: 1
+        - id: employee
+          uri: http://localhost:8080/employee/{id}
+          predicates:
+            - Path=/employee/{id}
+          filters:
+            - name: RequestRateLimiter
+              args:
+                methods: GET,PUT,DELETE
+                redis-rate-limiter.replenishRate: 20
+                redis-rate-limiter.burstCapacity: 40
+                redis-rate-limiter.requestedTokens: 1
