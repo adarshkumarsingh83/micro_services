@@ -1,16 +1,20 @@
+server:
+  port: 8888
 
 spring:
   application:
-    name: spring-cloud-client-service
-  profiles:
-    active:
-      - default
-  config:
-    import: optional:configserver:http://rootname:rootpwd@localhost:8888
-server:
-  port: 0
-  servlet:
-    context-path: /api
+    name: spring-cloud-config-server
+  security:
+    user:
+      name: rootname
+      password: rootpwd
+  cloud:
+    config:
+      server:
+        git:
+          clone-on-start: true
+          uri: https://github.com/adarshkumarsingh83/config-repo/
+
 eureka:
   client:
     registerWithEureka: true

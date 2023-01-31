@@ -16,11 +16,14 @@ public class ApplicationController {
     @Value("${spring.cloud.client.hostname}")
     String hostName;
 
+    @Value("${application.message}")
+    String message;
+
     @GetMapping("/wish/{name}")
     public Map<String, String> getWish(@PathVariable("name") String name) {
         return new HashMap<>() {
             {
-                put("message", "welcome to the espark " + name);
+                put("message", message+" " + name);
                 put("hostname", hostName);
                 put("instanceId", instanceId);
             }
