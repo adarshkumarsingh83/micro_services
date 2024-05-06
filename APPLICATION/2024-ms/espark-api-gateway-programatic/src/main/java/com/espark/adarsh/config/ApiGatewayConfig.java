@@ -11,13 +11,13 @@ public class ApiGatewayConfig {
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route(r -> r.path("/wish")
+                .route(r -> r.path("/api/wish/**")
                         //Pre and Post Filters provided by Spring Cloud Gateway
                         .filters(f -> f.addRequestHeader("wish-request", "wish-request-header")
                                 .addResponseHeader("wish-response", "wish-response-header"))
                         .uri("lb://espark-api-aggregator"))
 
-                .route(r -> r.path("/greet")
+                .route(r -> r.path("/api/greet/**")
                         //Pre and Post Filters provided by Spring Cloud Gateway
                         .filters(f -> f.addRequestHeader("greet-request", "greet-request-header")
                                 .addResponseHeader("greet-response", "greet-response-header"))

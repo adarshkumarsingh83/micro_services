@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: espark-api-gateway-programatic
+  cloud:
+    gateway:
+      actuator:
+        verbose:
+          enabled: true
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 9090

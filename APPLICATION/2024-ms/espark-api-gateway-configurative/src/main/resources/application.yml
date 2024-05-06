@@ -1,6 +1,6 @@
 spring:
   application:
-    name: espark-api-gateway
+    name: espark-api-gateway-configurative
   cloud:
     gateway:
       actuator:
@@ -15,10 +15,16 @@ spring:
           uri: lb://ESPARK-API-AGGREGATOR
           predicates:
             - Path=/api/wish/**
+          filters:
+            - AddRequestHeader=wish-request, wish-request-header
+            - AddResponseHeader=wish-response, wish-response-header
         - id: second
           uri: lb://ESPARK-API-AGGREGATOR
           predicates:
             - Path=/api/greet/**
+          filters:
+            - AddRequestHeader=greet-request, greet-request-header
+            - AddResponseHeader=greet-response, greet-response-header
 
 eureka:
   client:
