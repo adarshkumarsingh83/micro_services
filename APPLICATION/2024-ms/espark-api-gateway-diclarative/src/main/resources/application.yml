@@ -1,6 +1,6 @@
 spring:
   application:
-    name: espark-api-gateway-configurative
+    name: espark-api-gateway-diclarative
   cloud:
     gateway:
       actuator:
