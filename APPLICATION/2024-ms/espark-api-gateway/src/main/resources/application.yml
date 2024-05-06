@@ -12,13 +12,13 @@ spring:
           lowerCaseServiceId: true
       routes:
         - id: first
-          predicates:
-            - Path=/api/wish/
           uri: lb://ESPARK-API-AGGREGATOR
+          predicates:
+            - Path=/api/wish/**
         - id: second
-          predicates:
-            - Path=/api/greet/
           uri: lb://ESPARK-API-AGGREGATOR
+          predicates:
+            - Path=/api/greet/**
 
 eureka:
   client:
