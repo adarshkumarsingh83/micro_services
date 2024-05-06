@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: espark-api-gateway
+  cloud:
+    gateway:
+      actuator:
+        verbose:
+          enabled: true
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: first
+          predicates:
+            - Path=/api/wish/
+          uri: lb://ESPARK-API-AGGREGATOR
+        - id: second
+          predicates:
+            - Path=/api/greet/
+          uri: lb://ESPARK-API-AGGREGATOR
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8080

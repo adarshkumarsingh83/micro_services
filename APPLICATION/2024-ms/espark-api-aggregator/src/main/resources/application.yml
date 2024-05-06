@@ -1,0 +1,14 @@
+
+spring:
+  application:
+    name: espark-api-aggregator
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  servlet:
+    context-path: /api
+  port: 0
