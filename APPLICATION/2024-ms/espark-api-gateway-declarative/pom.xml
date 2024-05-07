@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.espark.adarsh</groupId>
-	<artifactId>espark-api-gateway-diclarative</artifactId>
+	<artifactId>espark-api-gateway-declarative</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>espark-api-gateway-diclarative</name>
+	<name>espark-api-gateway-declarative</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>21</java.version>

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: espark-api-gateway-programatic
+    name: espark-api-gateway-programmatic
   cloud:
     gateway:
       actuator:

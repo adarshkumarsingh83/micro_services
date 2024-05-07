@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.espark.adarsh</groupId>
-	<artifactId>espark-api-gateway-programatic</artifactId>
+	<artifactId>espark-api-gateway-programmatic</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>espark-api-gateway-programatic</name>
+	<name>espark-api-gateway-programmatic</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>21</java.version>
