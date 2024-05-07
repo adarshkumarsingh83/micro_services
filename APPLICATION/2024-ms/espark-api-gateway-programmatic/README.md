@@ -81,3 +81,6 @@ management.endpoints.web.exposure.include=*
 * api service url
   * http://localhost:9090/api/wish
   * http://localhost:9090/api/greet
+
+
+* [ref] (https://docs.spring.io/spring-cloud-gateway/reference/index.html)
