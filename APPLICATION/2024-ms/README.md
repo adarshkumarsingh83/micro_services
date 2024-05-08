@@ -142,6 +142,8 @@ spring:
 ---
 
 # profile configurations 
+* in cmd 
+  * java -jar -Dspring.profiles.active=production demo-0.0.1-SNAPSHOT.jar
 * in applicattion.propeties 
 
 ```
@@ -169,5 +171,7 @@ spring:
     activate:
       on-profile: prod
 ```
+
+---
 
 
