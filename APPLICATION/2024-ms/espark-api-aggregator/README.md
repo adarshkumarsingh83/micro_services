@@ -24,6 +24,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
     </dependencies>
 ```
 
@@ -34,11 +39,11 @@
     * eureka.client.fetchRegistry: This value is set to false because it will not retrieve the registered microservices list from anywhere. It will create and maintain this list itself.**
 
 ``` 
-
-
 spring:
   application:
     name: espark-api-aggregator
+  config:
+    import: configserver:http://localhost:8090
 
 eureka:
   client:
