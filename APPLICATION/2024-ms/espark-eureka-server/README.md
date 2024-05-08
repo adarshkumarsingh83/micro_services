@@ -66,3 +66,6 @@ public class EsparkEurekaServerApplication {
 
 * url 
   * http://localhost:8761/eureka/
+
+
+* [reference](https://docs.spring.io/spring-cloud-netflix/reference/spring-cloud-netflix.html)
