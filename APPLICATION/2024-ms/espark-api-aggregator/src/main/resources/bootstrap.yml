@@ -1,6 +1,0 @@
-
-spring:
-  application:
-    name: espark-api-aggregator
-  config:
-    import: configserver:http://localhost:8090

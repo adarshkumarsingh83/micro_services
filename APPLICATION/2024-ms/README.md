@@ -26,7 +26,7 @@
 
 ---
 
-* for eureka server 
+# for eureka server 
 * @EnableEurekaServer on main class 
 ```
 	<dependencies>
@@ -48,7 +48,7 @@ server:
 ```
 ---
 
-* for eureka client 
+# for eureka client 
 ```
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -65,7 +65,7 @@ eureka:
 
 ---
 
-* for api gateway 
+# for api gateway 
 ```
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -97,7 +97,7 @@ spring:
 
 ---
 
-* configuraiton server 
+# configuraiton server 
 * @EnableConfigServer on main class 
 ```
 		<dependency>
@@ -119,7 +119,7 @@ spring:
           timeout: 4
 ```
 
-* configuraiton server client 
+# configuraiton server client 
 ```
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -140,4 +140,34 @@ spring:
     String propName;
 ```
 ---
+
+# profile configurations 
+* in applicattion.propeties 
+
+```
+spring.profiles.active=dev
+
+```
+
+* in application.yml file 
+```
+spring:
+  config:
+    activate:
+      on-profile: default
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+```
+
 
