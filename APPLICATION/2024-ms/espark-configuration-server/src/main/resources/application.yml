@@ -6,8 +6,11 @@ spring:
     config:
       server:
         git:
-          uri: file://${user.home}/config-repo
-          default-label: master
+          #uri: file://${user.home}/config-repo
+          uri: https://github.com/adarshkumarsingh83/config-repo
+          default-label: main
+          skipSslValidation: true
+          timeout: 4
 
 
 eureka:
