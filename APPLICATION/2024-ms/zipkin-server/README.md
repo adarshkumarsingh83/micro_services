@@ -2,6 +2,9 @@
 
 ---
 
+# zipkin download 
+	* https://search.maven.org/remote_content?g=io.zipkin&a=zipkin-server&v=LATEST&c=exec
+
 # To Start the zipkin server 
 * java -jar zipkin-server-3.3.0-exec.jar
 
