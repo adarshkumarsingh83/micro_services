@@ -11,20 +11,48 @@ spring:
           enabled: true
           lowerCaseServiceId: true
       routes:
-        - id: first
+        - id: wish
           uri: lb://ESPARK-API-AGGREGATOR
           predicates:
             - Path=/api/wish/**
           filters:
             - AddRequestHeader=wish-request, wish-request-header
             - AddResponseHeader=wish-response, wish-response-header
-        - id: second
+        - id: greet
           uri: lb://ESPARK-API-AGGREGATOR
           predicates:
             - Path=/api/greet/**
           filters:
             - AddRequestHeader=greet-request, greet-request-header
             - AddResponseHeader=greet-response, greet-response-header
+        - id: message
+          uri: lb://ESPARK-API-AGGREGATOR
+          predicates:
+            - Path=/api/message/**
+          filters:
+            - AddRequestHeader=message-request, message-request-header
+            - AddResponseHeader=message-response, message-response-header
+        - id: details
+          uri: lb://ESPARK-API-AGGREGATOR
+          predicates:
+            - Path=/api/details/**
+          filters:
+            - AddRequestHeader=details-request, details-request-header
+            - AddResponseHeader=details-response, details-response-header
+        - id: address
+          uri: lb://ESPARK-API-AGGREGATOR
+          predicates:
+            - Path=/api/address/**
+          filters:
+            - AddRequestHeader=address-request, address-request-header
+            - AddResponseHeader=address-response, address-response-header
+        - id: employee
+          uri: lb://ESPARK-API-AGGREGATOR
+          predicates:
+            - Path=/api/employee/**
+          filters:
+            - AddRequestHeader=employee-request, employee-request-header
+            - AddResponseHeader=employee-response, employee-response-header
 
 eureka:
   client:
